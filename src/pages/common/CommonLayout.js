@@ -1,10 +1,14 @@
 import React from "react";
-import { Navigate } from "react-router-dom";
+import NavbarCom from "../../components/common/NavbarCom";
+import FooterCom from "../../components/common/FooterCom"
+import { Outlet } from "react-router-dom";
 
 export default function CommonLayout() {
   return (
-    <>
-      <Navigate to="/home" />
-    </>
+    <div>
+      <NavbarCom />
+      <Outlet />
+      <FooterCom />
+    </div>
   );
 }
