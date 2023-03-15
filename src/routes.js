@@ -1,4 +1,4 @@
-import CommonLayot from "./pages/common/CommonLayout";
+import CommonLayout from "./pages/common/CommonLayout";
 import LoginPage from "./pages/common/LoginPage";
 import RegisterPage from "./pages/common/RegisterPage";
 
@@ -19,7 +19,7 @@ import AdminRoute from "./auth/AdminRoute";
 const routes = [
   {
     path: "/",
-    element: <CommonLayot />,
+    element: <CommonLayout />,
     children: [
       {
         index: true,
