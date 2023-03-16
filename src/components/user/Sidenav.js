@@ -14,7 +14,7 @@ import { Inbox, Mail, ChevronLeft, ChevronRight } from "@mui/icons-material";
 
 export default function Sidenav({ children }) {
   const [open, setOpen] = useState(true);
-  const [pin, setPin] = useState(true);
+  const [pin, setPin] = useState(false);
 
   const drawerOpenHandle = () => {
     setOpen(!open);
