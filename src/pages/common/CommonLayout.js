@@ -1,14 +1,17 @@
 import React from "react";
 import NavbarCom from "../../components/common/NavbarCom";
-import FooterCom from "../../components/common/FooterCom"
+import FooterCom from "../../components/common/FooterCom";
 import { Outlet } from "react-router-dom";
+import Sidenav from "../../components/common/Sidenav";
 
 export default function CommonLayout() {
   return (
     <div>
-      <NavbarCom />
-      <Outlet />
-      <FooterCom />
+      <Sidenav>
+        <NavbarCom />
+        <Outlet />
+        <FooterCom />
+      </Sidenav>
     </div>
   );
 }
