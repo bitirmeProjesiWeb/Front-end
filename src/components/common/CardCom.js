@@ -35,16 +35,16 @@ export default function CardCom({ image, pitchTitle, description, price }) {
       <Button
         style={{ margin: "10px" }}
         size="medium"
-        variant="outlined"
-        color="primary"
+        variant="contained"
+        color="info"
       >
         incele
       </Button>
       <Button
         style={{ margin: "10px", float: "right" }}
         size="medium"
-        variant="outlined"
-        color="primary"
+        variant="contained"
+        color="success"
       >
         rezerve et
       </Button>
