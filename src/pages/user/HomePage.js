@@ -7,7 +7,7 @@ export default function HomePages() {
 
   return (
     
-    <div style={{display:"flex"}}>
+    <div style={{display:"flex",flexWrap: "wrap"}}>
     {items.map(item => (
       <CardCom {...item}></CardCom>
     ) )}
