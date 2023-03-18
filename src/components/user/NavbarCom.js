@@ -1,4 +1,10 @@
-import { Notifications } from "@mui/icons-material";
+import {
+  DarkModeOutlined,
+  LightModeOutlined,
+  NotificationsOutlined,
+  PersonOutlined,
+  SettingsOutlined,
+} from "@mui/icons-material";
 import {
   AppBar,
   Badge,
@@ -7,14 +13,18 @@ import {
   IconButton,
   Toolbar,
   Typography,
+  useTheme,
 } from "@mui/material";
-import React from "react";
+import { ColorModeContext } from "../../theme";
+import React, { useContext } from "react";
 
 export default function NavbarCom({ open, drawer }) {
+  const theme = useTheme();
+  const colorMode = useContext(ColorModeContext);
   return (
-    <Box sx={{ display: "flex" }}>
+    <Box sx={{ display: "flex", justifyContent: "space-between", p: "2px" }}>
       <CssBaseline />
-      <AppBar position="absolute" open={open}>
+      <AppBar position="absolute" color="inherit" open={open}>
         <Toolbar
           sx={{
             pr: "24px",
@@ -25,11 +35,26 @@ export default function NavbarCom({ open, drawer }) {
           <Typography variant="h1" noWrap sx={{ flexGrow: 1 }}>
             spor lifesi
           </Typography>
-          <IconButton color="inherit">
-            <Badge badgeContent={4} color="secondary">
-              <Notifications />
-            </Badge>
-          </IconButton>
+          <Box display="flex">
+            <IconButton onClick={colorMode.toggleColorMode}>
+              {theme.palette.mode === "dark" ? (
+                <DarkModeOutlined />
+              ) : (
+                <LightModeOutlined />
+              )}
+            </IconButton>
+            <IconButton>
+              <Badge badgeContent={4}>
+                <NotificationsOutlined />
+              </Badge>
+            </IconButton>
+            <IconButton>
+              <SettingsOutlined />
+            </IconButton>
+            <IconButton>
+              <PersonOutlined />
+            </IconButton>
+          </Box>
         </Toolbar>
       </AppBar>
 
