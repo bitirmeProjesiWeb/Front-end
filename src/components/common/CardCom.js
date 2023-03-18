@@ -11,7 +11,7 @@ export default function CardCom({ image, pitchTitle, description, price }) {
   return (
     <Card
       sx={{
-        width: "345px",
+        width: "330px",
         margin: "1rem",
         ":hover": {
           transform: "scale(1.03)",
