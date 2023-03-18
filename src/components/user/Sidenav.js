@@ -1,62 +1,51 @@
-import React, { useState } from "react";
+import React from "react";
 import {
   Box,
-  Button,
-  Checkbox,
   Divider,
   Drawer,
+  IconButton,
   List,
   ListItem,
   ListItemIcon,
   ListItemText,
+  Toolbar,
 } from "@mui/material";
-import { Inbox, Mail, ChevronLeft, ChevronRight } from "@mui/icons-material";
+import { Inbox, Mail, ChevronLeft, Menu } from "@mui/icons-material";
 
-export default function Sidenav({ children }) {
-  const [open, setOpen] = useState(true);
-  const [pin, setPin] = useState(false);
-
+export default function Sidenav({ children, open, setOpen,drawer }) {
   const drawerOpenHandle = () => {
     setOpen(!open);
   };
 
-  const drawerPinHandle = () => {
-    setPin(!pin);
-    setOpen(!open)
-  };
-
   return (
     <Box sx={{ display: "flex" }}>
-      <Button color="secondary" onClick={drawerOpenHandle} variant="outlined">
-        {!open ? <ChevronRight /> : <ChevronLeft />}
-      </Button>
       <Drawer
-        variant={pin ? "temporary" : "permanent"}
+        variant="permanent"
         open={open}
         sx={
-          open
-            ? { width: "250px", transition: "0.27s" }
-            : { width: "50px", overflowX: "hidden", transition: "0.27s" }
+          drawer
         }
       >
-        <div>
-          <Button
-            size="large"
-            color="secondary"
+        <Toolbar
+          sx={{
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "flex-end",
+            px: [1],
+          }}
+        >
+          <IconButton
+            edge="start"
+            sx={{ margin: "5px" }}
             onClick={drawerOpenHandle}
-            variant="outlined"
-            sx={!pin || open ?{ width: "80%" }:{}}
           >
-            {!open ? <ChevronRight /> : <ChevronLeft />}
-          </Button>
-          <Checkbox onClick={drawerPinHandle} checked={!pin} sx={open?{}:{display:"none"}}/>
-        </div>
+            {!open ? <Menu /> : <ChevronLeft />}
+          </IconButton>
+        </Toolbar>
         <Divider />
         <List
           sx={
-            open
-              ? { width: "250px", transition: "0.27s" }
-              : { width: "50px", overflowX: "hidden", transition: "0.27s" }
+            drawer
           }
         >
           <ListItem button>
@@ -88,9 +77,7 @@ export default function Sidenav({ children }) {
           </ListItem>
         </List>
       </Drawer>
-      <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
-        {children}
-      </Box>
+      <Box sx={{ flexGrow: 1, p: 3 }}>{children}</Box>
     </Box>
   );
 }
