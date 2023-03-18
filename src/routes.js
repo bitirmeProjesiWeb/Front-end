@@ -52,7 +52,7 @@ const routes = [
   {
     path: "/admin",
     element: <AdminLayout />,
-    admin: true,
+    // admin: true,
     children: [
       {
         index: true,
