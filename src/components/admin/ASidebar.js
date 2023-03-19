@@ -37,10 +37,11 @@ export default function ASidebar({ children, open, setOpen, drawer }) {
     <Box sx={{ display: "flex" }}>
       <Box sx={{ backgroundColor: colors.grey[500] }}>
         <Drawer
+          PaperProps={{ sx: { backgroundColor: colors.primary[500] } }} // tema renk ayarı
           variant="permanent"
           open={open}
           style={drawer}
-          sx={{ backgroundColor: colors.grey[500]}}
+          sx={{ backgroundColor: colors.grey[500] }}    //? buna gerek yok
         >
           <Toolbar
             sx={{
@@ -48,7 +49,7 @@ export default function ASidebar({ children, open, setOpen, drawer }) {
               alignItems: "center",
               justifyContent: "flex-end",
               px: [1],
-              backgroundColor: colors.grey[500],
+              backgroundColor: colors.grey[500],   //? buna da gerek yok
             }}
           >
             <IconButton
@@ -60,7 +61,7 @@ export default function ASidebar({ children, open, setOpen, drawer }) {
             </IconButton>
           </Toolbar>
           <Divider />
-          <List style={drawer} sx= {{backgroundColor: colors.grey[500]}}>
+          <List style={drawer} sx={{ backgroundColor: colors.grey[500] }}>       //! bunu direkt sil zaten
             <ListItem button>
               <ListItemIcon>
                 <HomeOutlinedIcon />
