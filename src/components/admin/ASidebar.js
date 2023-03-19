@@ -23,7 +23,6 @@ import CalendarTodayIcon from "@mui/icons-material/CalendarToday";
 import QuizIcon from "@mui/icons-material/Quiz";
 import StoreOutlinedIcon from "@mui/icons-material/StoreOutlined";
 import SportsSoccerOutlinedIcon from "@mui/icons-material/SportsSoccerOutlined";
-import Paper from "@mui/material/Paper";
 
 export default function ASidebar({ children, open, setOpen, drawer }) {
   const theme = useTheme();
@@ -35,13 +34,12 @@ export default function ASidebar({ children, open, setOpen, drawer }) {
 
   return (
     <Box sx={{ display: "flex" }}>
-      <Box sx={{ backgroundColor: colors.grey[500] }}>
+      <Box>
         <Drawer
-          PaperProps={{ sx: { backgroundColor: colors.primary[500] } }} // tema renk ayarı
+          PaperProps={{ sx: { backgroundColor: colors.primary[600] } }} // tema renk ayarı
           variant="permanent"
           open={open}
           style={drawer}
-          sx={{ backgroundColor: colors.grey[500] }}    //? buna gerek yok
         >
           <Toolbar
             sx={{
@@ -49,7 +47,6 @@ export default function ASidebar({ children, open, setOpen, drawer }) {
               alignItems: "center",
               justifyContent: "flex-end",
               px: [1],
-              backgroundColor: colors.grey[500],   //? buna da gerek yok
             }}
           >
             <IconButton
@@ -60,14 +57,18 @@ export default function ASidebar({ children, open, setOpen, drawer }) {
               {!open ? <Menu /> : <ChevronLeft />}
             </IconButton>
           </Toolbar>
+
           <Divider />
-          <List style={drawer} sx={{ backgroundColor: colors.grey[500] }}>       //! bunu direkt sil zaten
+          
+          <List style={drawer}>
             <ListItem button>
               <ListItemIcon>
                 <HomeOutlinedIcon />
               </ListItemIcon>
               <ListItemText primary="Anasayfa" />
             </ListItem>
+
+            <Divider />
 
             <ListItem button>
               <ListItemIcon>
@@ -97,6 +98,8 @@ export default function ASidebar({ children, open, setOpen, drawer }) {
               <ListItemText primary="Soru ve Yorumlar" />
             </ListItem>
 
+            <Divider />
+            
             <ListItem button>
               <ListItemIcon>
                 <StoreOutlinedIcon />
