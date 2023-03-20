@@ -18,13 +18,19 @@ import {
 import { ColorModeContext } from "../../theme";
 import React, { useContext } from "react";
 
-export default function NavbarCom({ open, drawer }) {
+//tema
+import { tokens } from "../../theme";
+
+export default function ANavbarCom({ open, drawer }) {
+
   const theme = useTheme();
+  const colors = tokens(theme.palette.mode);
   const colorMode = useContext(ColorModeContext);
+
   return (
-    <Box sx={{ display: "flex", justifyContent: "space-between", p: "2px" }}>
+    <Box sx={{ display: "flex", justifyContent: "space-between", p: "2px"}}  >
       <CssBaseline />
-      <AppBar position="absolute" color="inherit" open={open}>
+      <AppBar position="absolute" color="inherit" open={open} sx = {{background: colors.primary[400]}}>
         <Toolbar
           sx={{
             pr: "24px",
@@ -32,8 +38,8 @@ export default function NavbarCom({ open, drawer }) {
             transition: drawer.transition,
           }}
         >
-          <Typography variant="h1" noWrap sx={{ flexGrow: 1 }}>
-            spor lifesi
+          <Typography variant="h3" noWrap sx={{ flexGrow: 1 }}>
+            SportLife
           </Typography>
           <Box display="flex">
             <IconButton onClick={colorMode.toggleColorMode}>
@@ -44,6 +50,7 @@ export default function NavbarCom({ open, drawer }) {
               )}
             </IconButton>
             <IconButton>
+              {/* badgeContent : bildirim sayısı */}
               <Badge badgeContent={4}>
                 <NotificationsOutlined />
               </Badge>

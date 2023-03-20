@@ -1,4 +1,4 @@
-import CommonLayot from "./pages/common/CommonLayout";
+import CommonLayout from "./pages/common/CommonLayout";
 import LoginPage from "./pages/common/LoginPage";
 import RegisterPage from "./pages/common/RegisterPage";
 
@@ -13,17 +13,33 @@ import AProductsPage from "./pages/admin/ProductsPage";
 import AProfilePage from "./pages/admin/ProfilePage";
 import AUsersPage from "./pages/admin/UsersPage";
 
-import PrivateRoot from "./auth/PrivateRoute"
+import PrivateRoot from "./auth/PrivateRoute";
 import AdminRoute from "./auth/AdminRoute";
 
 const routes = [
   {
     path: "/",
-    element: <CommonLayot />,
-  },
-  {
-    path: "/home",
-    element: <UHomePage />,
+    element: <CommonLayout />,
+    children: [
+      {
+        index: true,
+        element: <UHomePage />,
+      },
+      {
+        path: "/cart",
+        element: <UCartPage />,
+        auth: true,
+      },
+      {
+        path: "/products",
+        element: <UProductsPage />,
+      },
+      {
+        path: "/profile",
+        element: <UProfilePage />,
+        auth: true,
+      },
+    ],
   },
   {
     path: "/login",
@@ -34,22 +50,9 @@ const routes = [
     element: <RegisterPage />,
   },
   {
-    path: "/cart",
-    element: <UCartPage />,
-  },
-  {
-    path: "/products",
-    element: <UProductsPage />,
-  },
-  {
-    path: "/profile",
-    element: <UProfilePage />,
-    auth: true,
-  },
-  {
     path: "/admin",
     element: <AdminLayout />,
-    admin:true,
+    // admin: true,
     children: [
       {
         index: true,
@@ -72,18 +75,18 @@ const routes = [
   },
 ];
 
-const authMap = (routes) => routes.map((route) => {
-    if(route?.auth){
-        route.element = <PrivateRoot>{route.element}</PrivateRoot>
+const authMap = (routes) =>
+  routes.map((route) => {
+    if (route?.auth) {
+      route.element = <PrivateRoot>{route.element}</PrivateRoot>;
     }
-    if(route?.admin){
-      route.element = <AdminRoute>{route.element}</AdminRoute>
+    if (route?.admin) {
+      route.element = <AdminRoute>{route.element}</AdminRoute>;
     }
-    if(route?.children){
-        route.children = authMap(route.children)
+    if (route?.children) {
+      route.children = authMap(route.children);
     }
     return route;
-});
-
+  });
 
 export default authMap(routes);
