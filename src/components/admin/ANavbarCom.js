@@ -9,7 +9,6 @@ import {
   AppBar,
   Badge,
   Box,
-  colors,
   CssBaseline,
   IconButton,
   Toolbar,
@@ -31,7 +30,7 @@ export default function ANavbarCom({ open, drawer }) {
   return (
     <Box sx={{ display: "flex", justifyContent: "space-between", p: "2px"}}  >
       <CssBaseline />
-      <AppBar position="absolute" color="inherit" open={open} sx = {{backgroundColor: colors.primary[600]}}>
+      <AppBar position="absolute" color="inherit" open={open} sx = {{background: colors.primary[400]}}>
         <Toolbar
           sx={{
             pr: "24px",
