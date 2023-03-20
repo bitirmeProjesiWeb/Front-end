@@ -13,18 +13,71 @@ import {
   useTheme,
 } from "@mui/material";
 
-import { NavLink } from "react-router-dom";
-
 import { tokens } from "../../theme";
 
 //iconlar
-import { ChevronLeft, Menu } from "@mui/icons-material";
-import HomeOutlinedIcon from "@mui/icons-material/HomeOutlined";
-import GroupsOutlinedIcon from "@mui/icons-material/GroupsOutlined";
-import CalendarTodayIcon from "@mui/icons-material/CalendarToday";
-import QuizIcon from "@mui/icons-material/Quiz";
-import StoreOutlinedIcon from "@mui/icons-material/StoreOutlined";
-import SportsSoccerOutlinedIcon from "@mui/icons-material/SportsSoccerOutlined";
+import {
+  CalendarToday,
+  ChevronLeft,
+  GroupsOutlined,
+  HomeOutlined,
+  Menu,
+  Quiz,
+  SportsSoccerOutlined,
+  StoreOutlined,
+} from "@mui/icons-material";
+import { NavLink } from "react-router-dom";
+
+const sidebarListItems = [
+  {
+    type: "listItem",
+    icon: <HomeOutlined />,
+    text: "Anasayfa",
+    link: "/admin",
+  },
+  {},
+  {
+    type: "listItem",
+    icon: <GroupsOutlined />,
+    text: "Randevular",
+    link: "/admin/randevular",
+  },
+  {
+    type: "listItem",
+    icon: <SportsSoccerOutlined />,
+    text: "Spor Alanları",
+    link: "/admin/spor-alanlari",
+  },
+  {
+    type: "listItem",
+    icon: <CalendarToday />,
+    text: "Takvim",
+    link: "/admin/takvim",
+  },
+
+  {
+    type: "listItem",
+    icon: <Quiz />,
+    text: "Soru ve Yorumlar",
+    link: "/admin/yorumlar",
+  },
+  {},
+  {
+    type: "listItem",
+    icon: <StoreOutlined />,
+    text: "Kurum Yönetimi",
+    link: "/admin/kurum-yönetimi",
+  },
+];
+
+function SidebarListItemCom({ item }) {
+  return (
+    <ListItem button component={NavLink} to={item.link}>
+      <ListItemIcon>{item.icon}</ListItemIcon>
+      <ListItemText primary={item.text} />
+    </ListItem>
+  );
+}
 
 export default function ASidebar({ children, open, setOpen, drawer }) {
   const theme = useTheme();
@@ -38,9 +91,10 @@ export default function ASidebar({ children, open, setOpen, drawer }) {
     <Box sx={{ display: "flex" }}>
       <Box>
         <Drawer
-          PaperProps={{ 
-            elevation: "2",
-            sx: { background: colors.primary[400] } }} // tema renk ayarı
+          PaperProps={{
+            elevation: "1",
+            sx: { background: colors.primary[400] },
+          }} // tema renk ayarı
           variant="permanent"
           open={open}
           style={drawer}
@@ -61,55 +115,16 @@ export default function ASidebar({ children, open, setOpen, drawer }) {
               {!open ? <Menu /> : <ChevronLeft />}
             </IconButton>
           </Toolbar>
-
           <Divider />
-          
+
           <List style={drawer}>
-            <ListItem button component={NavLink} to= "/admin">
-              <ListItemIcon>
-                <HomeOutlinedIcon />
-              </ListItemIcon>
-              <ListItemText primary="Anasayfa" />
-            </ListItem>
-
-            <Divider />
-
-            <ListItem button component={NavLink} to= "/randevular">
-              <ListItemIcon>
-                <GroupsOutlinedIcon />
-              </ListItemIcon>
-              <ListItemText primary="Randevular" />
-            </ListItem>
-
-            <ListItem button component={NavLink} to= "/sporalanlari">
-              <ListItemIcon>
-                <SportsSoccerOutlinedIcon />
-              </ListItemIcon>
-              <ListItemText primary="Spor Alanları" />
-            </ListItem>
-
-            <ListItem button component={NavLink} to= "/takvim">
-              <ListItemIcon>
-                <CalendarTodayIcon />
-              </ListItemIcon>
-              <ListItemText primary="Takvim" />
-            </ListItem>
-
-            <ListItem button component={NavLink} to= "/soruveyorumlar">
-              <ListItemIcon>
-                <QuizIcon />
-              </ListItemIcon>
-              <ListItemText primary="Soru ve Yorumlar" />
-            </ListItem>
-
-            <Divider />
-            
-            <ListItem button component={NavLink} to= "/kurumyonetimi">
-              <ListItemIcon>
-                <StoreOutlinedIcon />
-              </ListItemIcon>
-              <ListItemText primary="Kurum Yönetimi" />
-            </ListItem>
+            {sidebarListItems.map((item) =>
+              item.type === "listItem" ? (
+                <SidebarListItemCom item={item} />
+              ) : (
+                <Divider />
+              )
+            )}
           </List>
         </Drawer>
       </Box>
