@@ -13,6 +13,8 @@ import {
   useTheme,
 } from "@mui/material";
 
+import { NavLink } from "react-router-dom";
+
 import { tokens } from "../../theme";
 
 //iconlar
@@ -36,7 +38,9 @@ export default function ASidebar({ children, open, setOpen, drawer }) {
     <Box sx={{ display: "flex" }}>
       <Box>
         <Drawer
-          PaperProps={{ sx: { backgroundColor: colors.primary[600] } }} // tema renk ayarı
+          PaperProps={{ 
+            elevation: "2",
+            sx: { background: colors.primary[400] } }} // tema renk ayarı
           variant="permanent"
           open={open}
           style={drawer}
@@ -61,7 +65,7 @@ export default function ASidebar({ children, open, setOpen, drawer }) {
           <Divider />
           
           <List style={drawer}>
-            <ListItem button>
+            <ListItem button component={NavLink} to= "/admin">
               <ListItemIcon>
                 <HomeOutlinedIcon />
               </ListItemIcon>
@@ -70,28 +74,28 @@ export default function ASidebar({ children, open, setOpen, drawer }) {
 
             <Divider />
 
-            <ListItem button>
+            <ListItem button component={NavLink} to= "/randevular">
               <ListItemIcon>
                 <GroupsOutlinedIcon />
               </ListItemIcon>
               <ListItemText primary="Randevular" />
             </ListItem>
 
-            <ListItem button>
+            <ListItem button component={NavLink} to= "/sporalanlari">
               <ListItemIcon>
                 <SportsSoccerOutlinedIcon />
               </ListItemIcon>
               <ListItemText primary="Spor Alanları" />
             </ListItem>
 
-            <ListItem button>
+            <ListItem button component={NavLink} to= "/takvim">
               <ListItemIcon>
                 <CalendarTodayIcon />
               </ListItemIcon>
               <ListItemText primary="Takvim" />
             </ListItem>
 
-            <ListItem button>
+            <ListItem button component={NavLink} to= "/soruveyorumlar">
               <ListItemIcon>
                 <QuizIcon />
               </ListItemIcon>
@@ -100,7 +104,7 @@ export default function ASidebar({ children, open, setOpen, drawer }) {
 
             <Divider />
             
-            <ListItem button>
+            <ListItem button component={NavLink} to= "/kurumyonetimi">
               <ListItemIcon>
                 <StoreOutlinedIcon />
               </ListItemIcon>
