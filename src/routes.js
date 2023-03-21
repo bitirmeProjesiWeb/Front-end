@@ -10,6 +10,12 @@ import AHomePage from "./pages/admin/HomePage";
 import AProductsPage from "./pages/admin/ProductsPage";
 import AProfilePage from "./pages/admin/ProfilePage";
 import AUsersPage from "./pages/admin/UsersPage";
+import AReservationsPage from "./pages/admin/AReservationsPage";
+import APitchesPage from "./pages/admin/APitchesPage";
+import ACalendarPage from "./pages/admin/ACalendarPage";
+import ACommentsPage from "./pages/admin/ACommentsPage";
+import AManagementPage from "./pages/admin/AManagementPage";
+
 
 import PrivateRoot from "./auth/PrivateRoute";
 import AdminRoute from "./auth/AdminRoute";
@@ -75,6 +81,26 @@ const routes = [
       {
         path: "users",
         element: <AUsersPage />,
+      },
+      {
+        path: "randevular",
+        element: <AReservationsPage/>,
+      },
+      {
+        path: "spor-alanlari",
+        element: <APitchesPage/>,
+      },
+      {
+        path: "takvim",
+        element: <ACalendarPage/>,
+      },
+      {
+        path: "yorumlar",
+        element: <ACommentsPage/>,
+      },
+      {
+        path: "kurum-yonetimi",
+        element: <AManagementPage/>,
       },
     ],
   },
