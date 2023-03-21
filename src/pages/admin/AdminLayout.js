@@ -11,7 +11,7 @@ export default function AdminLayout() {
   useEffect(() => {
     open
       ? setDrawer({
-          width: "250px",
+          width: "210px",
           transition: "0.27s",
         })
       : setDrawer({
