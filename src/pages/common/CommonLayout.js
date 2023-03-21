@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import NavbarCom from "../../components/user/NavbarCom";
 import FooterCom from "../../components/common/FooterCom";
 import { Outlet } from "react-router-dom";
+import { Box } from "@mui/material";
 
 export default function CommonLayout() {
   const [open, setOpen] = useState(false);
@@ -21,10 +22,10 @@ export default function CommonLayout() {
   }, [open]);
 
   return (
-    <div>
+    <Box sx={{ margin: "20px" }}>
       <NavbarCom drawer={drawer} open={open} setOpen={setOpen} />
         <Outlet />
         <FooterCom />
-    </div>
+    </Box>
   );
 }
