@@ -2,10 +2,8 @@ import CommonLayout from "./pages/common/CommonLayout";
 import LoginPage from "./pages/common/LoginPage";
 import RegisterPage from "./pages/common/RegisterPage";
 
-import UHomePage from "./pages/user/HomePage";
-import UCartPage from "./pages/user/CartPage";
-import UProductsPage from "./pages/user/ProductsPage";
-import UProfilePage from "./pages/user/ProfilePage";
+import UHomePage from "./pages/user/UHomePage";
+import UProfilePage from "./pages/user/UProfilePage";
 
 import AdminLayout from "./pages/admin/AdminLayout";
 import AHomePage from "./pages/admin/HomePage";
@@ -15,6 +13,9 @@ import AUsersPage from "./pages/admin/UsersPage";
 
 import PrivateRoot from "./auth/PrivateRoute";
 import AdminRoute from "./auth/AdminRoute";
+import UPitchesPage from "./pages/user/UPitchesPage";
+import UPitchDetailPage from "./pages/user/UPitchDetailPage";
+import UReservationsPage from "./pages/user/UReservationsPage";
 
 const routes = [
   {
@@ -26,18 +27,22 @@ const routes = [
         element: <UHomePage />,
       },
       {
-        path: "/cart",
-        element: <UCartPage />,
-        auth: true,
-      },
-      {
-        path: "/products",
-        element: <UProductsPage />,
-      },
-      {
-        path: "/profile",
+        path: "profile",
         element: <UProfilePage />,
         auth: true,
+      },
+      {
+        path: "reservations",
+        element: <UReservationsPage />,
+        auth: true,
+      },
+      {
+        path: "pitches",
+        element: <UPitchesPage />,
+      },
+      {
+        path: "pitchDetail/:pitchId",
+        element: <UPitchDetailPage />,
       },
     ],
   },

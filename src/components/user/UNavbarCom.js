@@ -18,7 +18,7 @@ import {
 import { ColorModeContext } from "../../theme";
 import React, { useContext } from "react";
 
-export default function NavbarCom({ open, drawer }) {
+export default function UNavbarCom({ open, drawer }) {
   const theme = useTheme();
   const colorMode = useContext(ColorModeContext);
   return (
@@ -33,7 +33,7 @@ export default function NavbarCom({ open, drawer }) {
           }}
         >
           <Typography variant="h1" noWrap sx={{ flexGrow: 1 }}>
-            spor lifesi
+            SporLife
           </Typography>
           <Box display="flex">
             <IconButton onClick={colorMode.toggleColorMode}>
