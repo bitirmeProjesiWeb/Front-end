@@ -70,11 +70,11 @@ const sidebarListItems = [
   },
 ];
 
-function SidebarListItemCom({ item }) {
+function SidebarListItemCom({ icon, link, text }) {
   return (
-    <ListItem button component={NavLink} to={item.link}>
-      <ListItemIcon>{item.icon}</ListItemIcon>
-      <ListItemText primary={item.text} />
+    <ListItem button component={NavLink} to={link}>
+      <ListItemIcon>{icon}</ListItemIcon>
+      <ListItemText primary={text} />
     </ListItem>
   );
 }
@@ -120,7 +120,7 @@ export default function ASidebar({ children, open, setOpen, drawer }) {
           <List style={drawer}>
             {sidebarListItems.map((item) =>
               item.type === "listItem" ? (
-                <SidebarListItemCom item={item} />
+                <SidebarListItemCom {...item} />
               ) : (
                 <Divider />
               )
