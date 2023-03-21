@@ -87,7 +87,7 @@ const routes = [
         element: <AReservationsPage/>,
       },
       {
-        path: "spor-alanlari",
+        path: "sporAlanlari",
         element: <APitchesPage/>,
       },
       {
@@ -99,7 +99,7 @@ const routes = [
         element: <ACommentsPage/>,
       },
       {
-        path: "kurum-yonetimi",
+        path: "kurumYonetimi",
         element: <AManagementPage/>,
       },
     ],
