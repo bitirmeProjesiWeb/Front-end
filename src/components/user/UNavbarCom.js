@@ -15,16 +15,17 @@ import {
   Typography,
   useTheme,
 } from "@mui/material";
-import { ColorModeContext } from "../../theme";
+import { ColorModeContext, tokens } from "../../theme";
 import React, { useContext } from "react";
 
 export default function UNavbarCom({ open, drawer }) {
   const theme = useTheme();
+  const colors = tokens(theme.palette.mode);
   const colorMode = useContext(ColorModeContext);
   return (
     <Box sx={{ display: "flex", justifyContent: "space-between", p: "2px" }}>
       <CssBaseline />
-      <AppBar position="absolute" color="inherit" open={open}>
+      <AppBar position="absolute" color="inherit" open={open}  sx = {{background: colors.primary[400]}}>
         <Toolbar
           sx={{
             pr: "24px",
