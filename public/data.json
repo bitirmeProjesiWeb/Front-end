@@ -26,67 +26,123 @@
   "pitches": [
     {
       "pitchId": 1,
-      "pitchTitle": "saha 1",
+      "pitchTitle": "Saha 1",
       "pitchOwnerId": 1,
-      "seanslar": [
-        { "seansId": 1, "sessionStart": "10:00", "sessionFinish": "11.30" },
-        { "seansId": 2, "sessionStart": "12:00", "sessionFinish": "13.30" },
-        { "seansId": 3, "sessionStart": "14:00", "sessionFinish": "15.30" },
-        { "seansId": 4, "sessionStart": "16:00", "sessionFinish": "17.30" },
-        { "seansId": 5, "sessionStart": "18:00", "sessionFinish": "19.30" }
+      "sessions": [
+        { "sessionId": 1, "sessionStart": "10:00", "sessionFinish": "11.30" },
+        { "sessionId": 2, "sessionStart": "12:00", "sessionFinish": "13.30" },
+        { "sessionId": 3, "sessionStart": "14:00", "sessionFinish": "15.30" },
+        { "sessionId": 4, "sessionStart": "16:00", "sessionFinish": "17.30" },
+        { "sessionId": 5, "sessionStart": "18:00", "sessionFinish": "19.30" }
       ],
       "image": "https://media.istockphoto.com/id/496854540/photo/soccer-stadium-upper-view.jpg?b=1&s=170667a&w=0&k=20&c=Ry_5AI7Htei1g97kB4bPLujkbsddz05mSNLpQ9FEOjU=",
-      "description": "sahte saha 1 resim çalıntı",
+      "description": "Zeytinburnu sahası",
       "price": 100,
-      "type":"halı saha"
+      "type": "halı",
+      "ilId": "2170",
+      "ilçeId": "108750",
+      "lat": 41.0001,
+      "lng": 28.9048
     },
     {
       "pitchId": 2,
       "pitchTitle": "saha 2",
       "pitchOwnerId": 3,
-      "seanslar": [
-        { "seansId": 1, "sessionStart": "10:00", "sessionFinish": "11.30" },
-        { "seansId": 2, "sessionStart": "12:00", "sessionFinish": "13.30" },
-        { "seansId": 3, "sessionStart": "14:00", "sessionFinish": "15.30" },
-        { "seansId": 4, "sessionStart": "16:00", "sessionFinish": "17.30" },
-        { "seansId": 5, "sessionStart": "18:00", "sessionFinish": "19.30" }
+      "sessions": [
+        { "sessionId": 1, "sessionStart": "10:00", "sessionFinish": "11.30" },
+        { "sessionId": 2, "sessionStart": "12:00", "sessionFinish": "13.30" },
+        { "sessionId": 3, "sessionStart": "14:00", "sessionFinish": "15.30" },
+        { "sessionId": 4, "sessionStart": "16:00", "sessionFinish": "17.30" },
+        { "sessionId": 5, "sessionStart": "18:00", "sessionFinish": "19.30" }
       ],
       "image": "https://media.istockphoto.com/id/518567017/tr/foto%C4%9Fraf/soccer-stadium.jpg?s=2048x2048&w=is&k=20&c=C7F99VlD-r5ID4j7gXIq5AScP8XSjc6tYqoKDIb7Cps=",
-      "description": "sahte saha 2",
+      "description": "Beylikdüzü sahası",
       "price": 150,
-      "type":"halı saha"
+      "type": "halı",
+      "ilId": "2170",
+      "ilçeId": "107338",
+      "lat": 41.0125,
+      "lng": 28.6412
     },
     {
       "pitchId": 3,
-      "pitchTitle": "saha 1",
+      "pitchTitle": "saha 3",
       "pitchOwnerId": 3,
-      "seanslar": [
-        { "seansId": 1, "sessionStart": "10:00", "sessionFinish": "11.30" },
-        { "seansId": 2, "sessionStart": "12:00", "sessionFinish": "13.30" },
-        { "seansId": 3, "sessionStart": "14:00", "sessionFinish": "15.30" },
-        { "seansId": 4, "sessionStart": "16:00", "sessionFinish": "17.30" },
-        { "seansId": 5, "sessionStart": "18:00", "sessionFinish": "19.30" }
+      "sessions": [
+        { "sessionId": 1, "sessionStart": "10:00", "sessionFinish": "11.30" },
+        { "sessionId": 2, "sessionStart": "12:00", "sessionFinish": "13.30" },
+        { "sessionId": 3, "sessionStart": "14:00", "sessionFinish": "15.30" },
+        { "sessionId": 4, "sessionStart": "16:00", "sessionFinish": "17.30" },
+        { "sessionId": 5, "sessionStart": "18:00", "sessionFinish": "19.30" }
       ],
       "image": "https://media.istockphoto.com/id/496854540/photo/soccer-stadium-upper-view.jpg?b=1&s=170667a&w=0&k=20&c=Ry_5AI7Htei1g97kB4bPLujkbsddz05mSNLpQ9FEOjU=",
-      "description": "sahte saha 1 resim çalıntı",
+      "description": "Beyoğlu sahası",
       "price": 100,
-      "type":"halı saha"
+      "type": "halı",
+      "ilId": "2170",
+      "ilçeId": "107341",
+      "lat": 41.03786,
+      "lng": 28.96767
     },
     {
       "pitchId": 4,
-      "pitchTitle": "saha 2",
+      "pitchTitle": "saha 4",
       "pitchOwnerId": 1,
-      "seanslar": [
-        { "seansId": 1, "sessionStart": "10:00", "sessionFinish": "11.30" },
-        { "seansId": 2, "sessionStart": "12:00", "sessionFinish": "13.30" },
-        { "seansId": 3, "sessionStart": "14:00", "sessionFinish": "15.30" },
-        { "seansId": 4, "sessionStart": "16:00", "sessionFinish": "17.30" },
-        { "seansId": 5, "sessionStart": "18:00", "sessionFinish": "19.30" }
+      "sessions": [
+        { "sessionId": 1, "sessionStart": "10:00", "sessionFinish": "11.30" },
+        { "sessionId": 2, "sessionStart": "12:00", "sessionFinish": "13.30" },
+        { "sessionId": 3, "sessionStart": "14:00", "sessionFinish": "15.30" },
+        { "sessionId": 4, "sessionStart": "16:00", "sessionFinish": "17.30" },
+        { "sessionId": 5, "sessionStart": "18:00", "sessionFinish": "19.30" }
       ],
       "image": "https://media.istockphoto.com/id/518567017/tr/foto%C4%9Fraf/soccer-stadium.jpg?s=2048x2048&w=is&k=20&c=C7F99VlD-r5ID4j7gXIq5AScP8XSjc6tYqoKDIb7Cps=",
-      "description": "sahte saha 2",
+      "description": "Fatih basketbol sahası",
       "price": 150,
-      "type":"halı saha"
+      "type": "basketbol",
+      "ilId": "2170",
+      "ilçeId": "107632",
+      "lat": 41.01746,
+      "lng": 28.94053
+    },
+    {
+      "pitchId": 5,
+      "pitchTitle": "saha 5",
+      "pitchOwnerId": 1,
+      "sessions": [
+        { "sessionId": 1, "sessionStart": "10:00", "sessionFinish": "11.30" },
+        { "sessionId": 2, "sessionStart": "12:00", "sessionFinish": "13.30" },
+        { "sessionId": 3, "sessionStart": "14:00", "sessionFinish": "15.30" },
+        { "sessionId": 4, "sessionStart": "16:00", "sessionFinish": "17.30" },
+        { "sessionId": 5, "sessionStart": "18:00", "sessionFinish": "19.30" }
+      ],
+      "image": "https://media.istockphoto.com/id/496854540/photo/soccer-stadium-upper-view.jpg?b=1&s=170667a&w=0&k=20&c=Ry_5AI7Htei1g97kB4bPLujkbsddz05mSNLpQ9FEOjU=",
+      "description": "Güngören voleybol sahası",
+      "price": 100,
+      "type": "voleybol",
+      "ilId": "2170",
+      "ilçeId": "107746",
+      "lat": 41.01787,
+      "lng": 28.87882
+    },
+    {
+      "pitchId": 6,
+      "pitchTitle": "saha 6",
+      "pitchOwnerId": 1,
+      "sessions": [
+        { "sessionId": 1, "sessionStart": "10:00", "sessionFinish": "11.30" },
+        { "sessionId": 2, "sessionStart": "12:00", "sessionFinish": "13.30" },
+        { "sessionId": 3, "sessionStart": "14:00", "sessionFinish": "15.30" },
+        { "sessionId": 4, "sessionStart": "16:00", "sessionFinish": "17.30" },
+        { "sessionId": 5, "sessionStart": "18:00", "sessionFinish": "19.30" }
+      ],
+      "image": "https://media.istockphoto.com/id/496854540/photo/soccer-stadium-upper-view.jpg?b=1&s=170667a&w=0&k=20&c=Ry_5AI7Htei1g97kB4bPLujkbsddz05mSNLpQ9FEOjU=",
+      "description": "zeytinburnu tenis sahası 2",
+      "price": 100,
+      "type": "tenis",
+      "ilId": "2170",
+      "ilçeId": "108750",
+      "lat": 40.9901,
+      "lng": 28.9008
     }
   ],
   "reservations": [
@@ -95,14 +151,14 @@
       "userId": 1,
       "pitchId": 1,
       "sessionId": 4,
-      "date": "06/03/2023 10:15"
+      "date": "06/03/2023"
     },
     {
       "reservationId": 2,
       "userId": 2,
       "pitchId": 2,
-      "session": 2,
-      "date": "06/03/2023 16:15"
+      "sessionId": 2,
+      "date": "06/03/2023"
     }
   ]
 }
