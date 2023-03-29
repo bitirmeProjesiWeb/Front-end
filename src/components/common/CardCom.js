@@ -6,8 +6,15 @@ import {
   CardMedia,
   Typography,
 } from "@mui/material";
+import { NavLink } from "react-router-dom";
 
-export default function CardCom({ image, pitchTitle, description, price }) {
+export default function CardCom({
+  pitchId,
+  image,
+  pitchTitle,
+  description,
+  price,
+}) {
   return (
     <Card
       sx={{
@@ -18,6 +25,7 @@ export default function CardCom({ image, pitchTitle, description, price }) {
           boxShadow:
             " 0 13px 40px -5px hsla(240, 30.1%, 28%, 0.12), 0 8px 32px -8px hsla(0, 0%, 0%, 0.14), 0 -6px 32px -6px hsla(0, 0%, 0%, 0.02)",
         },
+        background:"inherit"
       }}
     >
       <CardMedia sx={{ height: "200px" }} image={image} title={pitchTitle} />
@@ -29,13 +37,15 @@ export default function CardCom({ image, pitchTitle, description, price }) {
           {description}
         </Typography>
         <Typography variant="h6" color="textSecondary">
-          ücret: {price} $
+          ücret: {price} ₺
         </Typography>
       </CardContent>
       <Button
+        component={NavLink}
+        to={`/pitchdetail/${pitchId}`}
         style={{ margin: "10px" }}
         size="medium"
-        variant="contained"
+        variant="outlined"
         color="info"
       >
         incele
@@ -43,7 +53,7 @@ export default function CardCom({ image, pitchTitle, description, price }) {
       <Button
         style={{ margin: "10px", float: "right" }}
         size="medium"
-        variant="contained"
+        variant="outlined"
         color="success"
       >
         rezerve et
