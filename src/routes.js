@@ -16,6 +16,8 @@ import AdminRoute from "./auth/AdminRoute";
 import UPitchesPage from "./pages/user/UPitchesPage";
 import UPitchDetailPage from "./pages/user/UPitchDetailPage";
 import UReservationsPage from "./pages/user/UReservationsPage";
+import NotFoundPage from "./pages/common/NotFoundPage";
+import UPitchReservationsPage from "./pages/user/UPitchReservationsPage";
 
 const routes = [
   {
@@ -37,12 +39,16 @@ const routes = [
         auth: true,
       },
       {
-        path: "pitches",
+        path: "pitches/:il/:ilce/:tip",
         element: <UPitchesPage />,
       },
       {
-        path: "pitchDetail/:pitchId",
+        path: "pitchdetail/:pitchId",
         element: <UPitchDetailPage />,
+      },
+      {
+        path: "pitchreservation/:pitchId",
+        element: <UPitchReservationsPage />,
       },
     ],
   },
@@ -53,6 +59,10 @@ const routes = [
   {
     path: "/register",
     element: <RegisterPage />,
+  },
+  {
+    path: "*",
+    element: <NotFoundPage />,
   },
   {
     path: "/admin",
