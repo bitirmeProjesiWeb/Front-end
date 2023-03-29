@@ -20,7 +20,7 @@ export default function UPitchReservationsPage() {
           )
       )
     );
-    console.log(filtered[0].sessionFinish);
+    console.log(filtered);
   }, [!filtered, reservations, pitches]);
   return filtered ? (
     <Grid container>
