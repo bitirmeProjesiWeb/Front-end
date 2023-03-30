@@ -4,12 +4,15 @@ const Context = createContext();
 
 const Provider = ({ children }) => {
   const [pitches, setPitches] = useState([]);
-  const [user, setUser] = useState();
   const [cities, setCities] = useState();
   const [reservations, setReservations] = useState();
   const [data, setData] = useState();
 
-  //************************************************** şehirler **************************************************
+  const [user, setUser] = useState(() => {
+    const storedUser = localStorage.getItem("user");
+    return storedUser !== null ? JSON.parse(storedUser) : null;
+  });
+
   useEffect(() => {
     const getirData = async () => {
       const result = await axios.get(
@@ -31,13 +34,36 @@ const Provider = ({ children }) => {
       setPitches(data.pitches);
       setReservations(data.reservations);
     }
-  }, [!data,pitches,reservations]);
+  }, [!data, pitches, reservations]);
 
+  useEffect(() => {
+    user
+      ? localStorage.setItem("user", JSON.stringify(user))
+      : localStorage.removeItem("user");
+  }, [user]);
+
+  const loginHandle = (user) => {
+    if (data) {
+      const u = data.users.find(
+        (item) => item.email === user.email && item.password === user.password
+      );
+
+      if (u) {
+        setUser(u);
+        return u;
+      }
+    }
+  };
+
+  const logoutHandle = () => {
+    setUser();
+  };
   const values = {
     pitches,
     setPitches,
+    loginHandle,
+    logoutHandle,
     user,
-    setUser,
     cities,
     reservations,
     setReservations,
