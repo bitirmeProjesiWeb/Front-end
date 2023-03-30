@@ -158,52 +158,52 @@
   ],
   "aUpComingReservations": [
     {
-      "txId": "01e4dsa",
-      "user": "johndoe",
-      "date": "2021-09-01",
-      "cost": "43.95"
+      "pitchId": "1",
+      "pitchName": "Bağcılar Spor Sahası",
+      "date": "31.03.2023",
+      "sessionTime": "07.00-09.00"
     },
     {
-      "txId": "0315dsaa",
-      "user": "jackdower",
-      "date": "2022-04-01",
-      "cost": "133.45"
+      "pitchId": "1",
+      "pitchName": "Bağcılar Spor Sahası",
+      "date": "31.03.2023",
+      "sessionTime": "10.00-12.00"
     },
     {
-      "txId": "01e4dsa",
-      "user": "aberdohnny",
-      "date": "2021-09-01",
-      "cost": "43.95"
+      "pitchId": "1",
+      "pitchName": "Bağcılar Spor Sahası",
+      "date": "31.03.2023",
+      "sessionTime": "13.00-15.00"
     },
     {
-      "txId": "51034szv",
-      "user": "goodmanave",
-      "date": "2022-11-05",
-      "cost": "200.95"
+      "pitchId": "1",
+      "pitchName": "Bağcılar Spor Sahası",
+      "date": "31.03.2023",
+      "sessionTime": "16.00-18.00"
     },
     {
-      "txId": "0a123sb",
-      "user": "stevebower",
-      "date": "2022-11-02",
-      "cost": "13.55"
+      "pitchId": "1",
+      "pitchName": "Bağcılar Spor Sahası",
+      "date": "30.03.2023",
+      "sessionTime": "10.00-12.00"
     },
     {
-      "txId": "01e4dsa",
-      "user": "aberdohnny",
-      "date": "2021-09-01",
-      "cost": "43.95"
+      "pitchId": "1",
+      "pitchName": "Bağcılar Spor Sahası",
+      "date": "30.03.2023",
+      "sessionTime": "13.00-15-00"
     },
     {
-      "txId": "120s51a",
-      "user": "wootzifer",
-      "date": "2019-04-15",
-      "cost": "24.20"
+      "pitchId": "1",
+      "pitchName": "Bağcılar Spor Sahası",
+      "date": "30.03.2023",
+      "sessionTime": "16.00-18.00"
     },
     {
-      "txId": "0315dsaa",
-      "user": "jackdower",
-      "date": "2022-04-01",
-      "cost": "133.45"
+      "pitchId": "1",
+      "pitchName": "Bağcılar Spor Sahası",
+      "date": "30.03.2023",
+      "sessionTime": "19.00-21.00"
     }
   ],
   "aReservations": [
