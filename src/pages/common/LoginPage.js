@@ -46,7 +46,7 @@ export default function LoginPage() {
             color="warning"
             required
             fullWidth
-            label="Email Adresi"
+            label="Email yada Kullanıcı Adı"
             autoComplete="email"
             autoFocus
             value={email}

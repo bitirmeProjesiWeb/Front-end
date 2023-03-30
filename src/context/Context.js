@@ -45,7 +45,7 @@ const Provider = ({ children }) => {
   const loginHandle = (user) => {
     if (data) {
       const u = data.users.find(
-        (item) => item.email === user.email && item.password === user.password
+        (item) => (item.email === user.email || item.userName === user.email) && item.password === user.password
       );
 
       if (u) {
