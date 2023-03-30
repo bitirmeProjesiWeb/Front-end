@@ -2,24 +2,33 @@
   "users": [
     {
       "userId": 1,
+      "userName":"f6c5",
+      "email":"f6c5@gmail.com",
       "name": "ferhat",
       "lastname": "çiçek",
       "avatar": "https://avatars.githubusercontent.com/u/84874779?v=4",
+      "password":"1234",
       "rol": "admin"
     },
     {
       "userId": 2,
+      "userName":"sevval",
+      "email":"sevval@gmail.com",
       "name": "şevval",
       "lastname": "şenel",
       "avatar": "https://avatars.githubusercontent.com/u/57571561?v=4",
+      "password":"123456",
       "rol": "user"
     },
 
     {
       "userId": 3,
+      "userName":"kubra",
+      "email":"kubra@outlook.com",
       "name": "kübra",
       "lastname": "kılınç",
       "avatar": "https://avatars.githubusercontent.com/u/99607501?v=4",
+      "password":"4321",
       "rol": "admin"
     }
   ],
@@ -151,14 +160,14 @@
       "userId": 1,
       "pitchId": 1,
       "sessionId": 4,
-      "date": "06/03/2023"
+      "date": "2023-04-02"
     },
     {
       "reservationId": 2,
       "userId": 2,
       "pitchId": 2,
       "sessionId": 2,
-      "date": "06/03/2023"
+      "date": "2023-04-01"
     }
   ]
 }
