@@ -9,7 +9,7 @@ export default function UHomePages() {
 
   const [selectedCity, setSelectedCity] = useState();
   const [selectedCounties, setSelectedCounties] = useState();
-  const [type, setType] = useState(0);
+  const [type, setType] = useState("");
 
   useEffect(() => {
     if (cities) {
@@ -48,25 +48,33 @@ export default function UHomePages() {
         </Paper>
       </Grid>
       <Grid item xs={10} justifyContent="center">
-        <MapsCom
-          zoom={selectedCity ? 9 : 6}
-          position={
-            !selectedCounties
-              ? selectedCity
-                ? {
-                    lat: parseFloat(selectedCity.latitude),
-                    lng: parseFloat(selectedCity.longitude),
-                  }
+        <Paper
+          elevation={10}
+          sx={{
+            padding: "1rem",
+            background: "inherit",
+          }}
+        >
+          <MapsCom
+            zoom={selectedCity ? 9 : 6}
+            position={
+              !selectedCounties
+                ? selectedCity
+                  ? {
+                      lat: parseFloat(selectedCity.latitude),
+                      lng: parseFloat(selectedCity.longitude),
+                    }
+                  : {
+                      lat: 39.0,
+                      lng: 35.0,
+                    }
                 : {
-                    lat: 39.0,
-                    lng: 35.0,
+                    lat: parseFloat(selectedCounties.latitude),
+                    lng: parseFloat(selectedCounties.longitude),
                   }
-              : {
-                  lat: parseFloat(selectedCounties.latitude),
-                  lng: parseFloat(selectedCounties.longitude),
-                }
-          }
-        />
+            }
+          />
+        </Paper>
       </Grid>
     </Grid>
   ) : (
