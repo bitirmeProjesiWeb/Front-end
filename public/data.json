@@ -25,70 +25,259 @@
   ],
   "pitches": [
     {
-      "pitchId":1,
+      "pitchId": 1,
       "pitchTitle": "saha 1",
       "pitchOwnerId": 1,
       "seanslar": [{ "session1": "10:00" }, { "session2": "12:00" }],
-      "image":
-        "https://media.istockphoto.com/id/496854540/photo/soccer-stadium-upper-view.jpg?b=1&s=170667a&w=0&k=20&c=Ry_5AI7Htei1g97kB4bPLujkbsddz05mSNLpQ9FEOjU=",
+      "image": "https://media.istockphoto.com/id/496854540/photo/soccer-stadium-upper-view.jpg?b=1&s=170667a&w=0&k=20&c=Ry_5AI7Htei1g97kB4bPLujkbsddz05mSNLpQ9FEOjU=",
       "description": "sahte saha 1 resim çalıntı",
       "price": 100
     },
     {
-      "pitchId":2,
+      "pitchId": 2,
       "pitchTitle": "saha 2",
       "pitchOwnerId": 3,
       "seanslar": [{ "session1": "10:00" }, { "session2": "12:00" }],
-      "image":
-        "https://media.istockphoto.com/id/518567017/tr/foto%C4%9Fraf/soccer-stadium.jpg?s=2048x2048&w=is&k=20&c=C7F99VlD-r5ID4j7gXIq5AScP8XSjc6tYqoKDIb7Cps=",
+      "image": "https://media.istockphoto.com/id/518567017/tr/foto%C4%9Fraf/soccer-stadium.jpg?s=2048x2048&w=is&k=20&c=C7F99VlD-r5ID4j7gXIq5AScP8XSjc6tYqoKDIb7Cps=",
       "description": "sahte saha 2",
       "price": 150
     },
     {
-      "pitchId":3,
+      "pitchId": 3,
       "pitchTitle": "saha 1",
       "pitchOwnerId": 3,
       "seanslar": [{ "session1": "10:00" }, { "session2": "12:00" }],
-      "image":
-        "https://media.istockphoto.com/id/496854540/photo/soccer-stadium-upper-view.jpg?b=1&s=170667a&w=0&k=20&c=Ry_5AI7Htei1g97kB4bPLujkbsddz05mSNLpQ9FEOjU=",
+      "image": "https://media.istockphoto.com/id/496854540/photo/soccer-stadium-upper-view.jpg?b=1&s=170667a&w=0&k=20&c=Ry_5AI7Htei1g97kB4bPLujkbsddz05mSNLpQ9FEOjU=",
       "description": "sahte saha 1 resim çalıntı",
       "price": 100
     },
     {
-      "pitchId":4,
+      "pitchId": 4,
       "pitchTitle": "saha 2",
       "pitchOwnerId": 1,
       "seanslar": [{ "session1": "10:00" }, { "session2": "12:00" }],
-      "image":
-        "https://media.istockphoto.com/id/518567017/tr/foto%C4%9Fraf/soccer-stadium.jpg?s=2048x2048&w=is&k=20&c=C7F99VlD-r5ID4j7gXIq5AScP8XSjc6tYqoKDIb7Cps=",
+      "image": "https://media.istockphoto.com/id/518567017/tr/foto%C4%9Fraf/soccer-stadium.jpg?s=2048x2048&w=is&k=20&c=C7F99VlD-r5ID4j7gXIq5AScP8XSjc6tYqoKDIb7Cps=",
       "description": "sahte saha 2",
       "price": 150
     },
     {
-      "pitchId":5,
+      "pitchId": 5,
       "pitchTitle": "saha 1",
       "pitchOwnerId": 1,
       "seanslar": [{ "session1": "10:00" }, { "session2": "12:00" }],
-      "image":
-        "https://media.istockphoto.com/id/496854540/photo/soccer-stadium-upper-view.jpg?b=1&s=170667a&w=0&k=20&c=Ry_5AI7Htei1g97kB4bPLujkbsddz05mSNLpQ9FEOjU=",
+      "image": "https://media.istockphoto.com/id/496854540/photo/soccer-stadium-upper-view.jpg?b=1&s=170667a&w=0&k=20&c=Ry_5AI7Htei1g97kB4bPLujkbsddz05mSNLpQ9FEOjU=",
       "description": "sahte saha 1 resim çalıntı",
       "price": 100
     }
   ],
   "reservations": [
     {
-      "reservationId":1,
+      "reservationId": 1,
       "userId": 1,
       "pitchId": 1,
       "session": "4",
       "date": "06/03/2023 10:15"
     },
     {
-      "reservationId":2,
+      "reservationId": 2,
       "userId": 2,
       "pitchId": 2,
       "session": "4",
       "date": "06/03/2023 16:15"
+    }
+  ],
+  "aLineChartData": [
+    {
+      "id": "japan",
+      "color": "hsl(35, 70%, 50%)",
+      "data": [
+        {
+          "x": "Ocak",
+          "y": 20
+        },
+        {
+          "x": "Şubat",
+          "y": 62
+        },
+        {
+          "x": "Mart",
+          "y": 89
+        },
+        {
+          "x": "Nisan",
+          "y": 118
+        },
+        {
+          "x": "Mayıs",
+          "y": 234
+        },
+        {
+          "x": "Haziran",
+          "y": 288
+        },
+        {
+          "x": "Temmuz",
+          "y": 310
+        },
+        {
+          "x": "Ağustos",
+          "y": 158
+        },
+        {
+          "x": "Eylül",
+          "y": 190
+        },
+        {
+          "x": "Ekim",
+          "y": 169
+        },
+        {
+          "x": "Kasım",
+          "y": 242
+        },
+        {
+          "x": "Aralık",
+          "y": 231
+        }
+      ]
+    }
+  ],
+  "aCapacityChartData": [
+    {
+      "id": "ruby",
+      "label": "ruby",
+      "value": 30,
+      "color": "hsl(151, 70%, 50%)"
+    },
+    {
+      "id": "lisp",
+      "label": "lisp",
+      "value": 70,
+      "color": "hsl(130, 70%, 50%)"
+    }
+  ],
+  "aUpComingReservations": [
+    {
+      "txId": "01e4dsa",
+      "user": "johndoe",
+      "date": "2021-09-01",
+      "cost": "43.95"
+    },
+    {
+      "txId": "0315dsaa",
+      "user": "jackdower",
+      "date": "2022-04-01",
+      "cost": "133.45"
+    },
+    {
+      "txId": "01e4dsa",
+      "user": "aberdohnny",
+      "date": "2021-09-01",
+      "cost": "43.95"
+    },
+    {
+      "txId": "51034szv",
+      "user": "goodmanave",
+      "date": "2022-11-05",
+      "cost": "200.95"
+    },
+    {
+      "txId": "0a123sb",
+      "user": "stevebower",
+      "date": "2022-11-02",
+      "cost": "13.55"
+    },
+    {
+      "txId": "01e4dsa",
+      "user": "aberdohnny",
+      "date": "2021-09-01",
+      "cost": "43.95"
+    },
+    {
+      "txId": "120s51a",
+      "user": "wootzifer",
+      "date": "2019-04-15",
+      "cost": "24.20"
+    },
+    {
+      "txId": "0315dsaa",
+      "user": "jackdower",
+      "date": "2022-04-01",
+      "cost": "133.45"
+    }
+  ],
+  "aReservations": [
+    {
+      "id": 1,
+      "name": "Jon Snow",
+      "email": "jonsnow@gmail.com",
+      "age": 35,
+      "phone": "(665)121-5454",
+      "access": "admin"
+    },
+    {
+      "id": 2,
+      "name": "Cersei Lannister",
+      "email": "cerseilannister@gmail.com",
+      "age": 42,
+      "phone": "(421)314-2288",
+      "access": "manager"
+    },
+    {
+      "id": 3,
+      "name": "Jaime Lannister",
+      "email": "jaimelannister@gmail.com",
+      "age": 45,
+      "phone": "(422)982-6739",
+      "access": "user"
+    },
+    {
+      "id": 4,
+      "name": "Anya Stark",
+      "email": "anyastark@gmail.com",
+      "age": 16,
+      "phone": "(921)425-6742",
+      "access": "admin"
+    },
+    {
+      "id": 5,
+      "name": "Daenerys Targaryen",
+      "email": "daenerystargaryen@gmail.com",
+      "age": 31,
+      "phone": "(421)445-1189",
+      "access": "user"
+    },
+    {
+      "id": 6,
+      "name": "Ever Melisandre",
+      "email": "evermelisandre@gmail.com",
+      "age": 150,
+      "phone": "(232)545-6483",
+      "access": "manager"
+    },
+    {
+      "id": 7,
+      "name": "Ferrara Clifford",
+      "email": "ferraraclifford@gmail.com",
+      "age": 44,
+      "phone": "(543)124-0123",
+      "access": "user"
+    },
+    {
+      "id": 8,
+      "name": "Rossini Frances",
+      "email": "rossinifrances@gmail.com",
+      "age": 36,
+      "phone": "(222)444-5555",
+      "access": "user"
+    },
+    {
+      "id": 9,
+      "name": "Harvey Roxie",
+      "email": "harveyroxie@gmail.com",
+      "age": 65,
+      "phone": "(444)555-6239",
+      "access": "admin"
     }
   ]
 }
