@@ -1,13 +1,13 @@
-import { Box, IconButton, Typography, useTheme } from "@mui/material";
+import { Box, Typography, useTheme } from "@mui/material";
 import { tokens } from "../../theme";
 //import { mockTransactions } from "../../data/mockData";
 import AHeader from "../../components/admin/AHeader";
 import ALineChart from "../../components/admin/ALineChart";
 // import BarChart from "../../components/BarChart";
-import AProgressCircle from "../../components/admin/AProgressCircle";
-import AStatBox from "../../components/admin/AStatBox";
-import EmailIcon from "@mui/icons-material/Email";
-import Grid from "@mui/material/Grid";
+// import AProgressCircle from "../../components/admin/AProgressCircle";
+// import AStatBox from "../../components/admin/AStatBox";
+// import EmailIcon from "@mui/icons-material/Email";
+// import Grid from "@mui/material/Grid";
 import ABox from "../../components/admin/ABox";
 import ACapacityBox from "../../components/admin/ACapacityBox";
 import ACapacityChart from "../../components/admin/ACapacityChart";
@@ -103,11 +103,15 @@ export default function HomePages() {
           gridColumn="span 5"
           backgroundColor={colors.primary[400]}
           display="flex"
-          alignItems="center"
-          justifyContent="center"
+          //alignItems="center"
+          //justifyContent="center"
         >
           {/* GÜNLÜK SAHA RANDEVU KAPASİTESİ */}
-          <ACapacityBox title="asdasdasd" subtitle="sdfdsfsdf" />
+          <ACapacityBox
+            title="GÜNLÜK SAHA RANDEVU KAPASİTESİ"
+            subtitle="Bağcılar Spor Salonu"
+            increase="%70"
+          />
           <ACapacityChart isDashboard={true} />
         </Box>
         <Box
@@ -200,7 +204,7 @@ export default function HomePages() {
             p="15px"
           >
             <Typography color={colors.grey[100]} variant="h5" fontWeight="600">
-              Yaklaşan Randevular
+              YAKLAŞAN RANDEVULAR
             </Typography>
           </Box>
           {sortedReservations &&
@@ -215,86 +219,23 @@ export default function HomePages() {
                 <Box>
                   <Typography
                     color={colors.greenAccent[500]}
-                    variant="h5"
-                    fontWeight="600"
+                    variant="h6"
+                    fontWeight="bold"
                   >
-                    {reservation.txId}
+                    {reservation.pitchName}
                   </Typography>
-                  <Typography color={colors.grey[100]}>
+                  {/* <Typography color={colors.grey[100]}>
                     {reservation.user}
-                  </Typography>
+                  </Typography> */}
                 </Box>
-                <Box color={colors.grey[100]}>{reservation.date}</Box>
-                <Box
-                  backgroundColor={colors.greenAccent[500]}
-                  p="5px 10px"
-                  borderRadius="4px"
-                >
-                  ${reservation.cost}
+                <Box color={colors.grey[100]} variant="h6">
+                  {reservation.date}
+                </Box>
+                <Box color={colors.grey[100]} variant="h6">
+                  {reservation.sessionTime}
                 </Box>
               </Box>
             ))}
-        </Box>
-
-        {/* ROW 3 */}
-        <Box
-          gridColumn="span 4"
-          gridRow="span 2"
-          backgroundColor={colors.primary[400]}
-          p="30px"
-        >
-          <Typography variant="h5" fontWeight="600">
-            Campaign
-          </Typography>
-          <Box
-            display="flex"
-            flexDirection="column"
-            alignItems="center"
-            mt="25px"
-          >
-            {/* <ProgressCircle size="125" /> */}
-            <Typography
-              variant="h5"
-              color={colors.greenAccent[500]}
-              sx={{ mt: "15px" }}
-            >
-              $48,352 revenue generated
-            </Typography>
-            <Typography>Includes extra misc expenditures and costs</Typography>
-          </Box>
-        </Box>
-        <Box
-          gridColumn="span 4"
-          gridRow="span 2"
-          backgroundColor={colors.primary[400]}
-        >
-          <Typography
-            variant="h5"
-            fontWeight="600"
-            sx={{ padding: "30px 30px 0 30px" }}
-          >
-            Sales Quantity
-          </Typography>
-          <Box height="250px" mt="-20px">
-            {/* <BarChart isDashboard={true} /> */}
-          </Box>
-        </Box>
-        <Box
-          gridColumn="span 4"
-          gridRow="span 2"
-          backgroundColor={colors.primary[400]}
-          padding="30px"
-        >
-          <Typography
-            variant="h5"
-            fontWeight="600"
-            sx={{ marginBottom: "15px" }}
-          >
-            Geography Based Traffic
-          </Typography>
-          <Box height="200px">
-            {/* <GeographyChart isDashboard={true} /> */}
-          </Box>
         </Box>
       </Box>
     </Box>
