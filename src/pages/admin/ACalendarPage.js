@@ -49,7 +49,7 @@ const ACalendarPage = () => {
 
   return (
     <Box m="20px">
-      <AHeader title="Calendar" subtitle="Full Calendar Interactive Page" />
+      <AHeader title="TAKVİM" subtitle="(Türkçe dil desteği çok yakında!)"/>
 
       <Box display="flex" justifyContent="space-between">
         {/* CALENDAR SIDEBAR */}
@@ -59,7 +59,7 @@ const ACalendarPage = () => {
           p="15px"
           borderRadius="4px"
         >
-          <Typography variant="h5">Events</Typography>
+          <Typography variant="h5">Etkinlikler</Typography>
           <List>
             {currentEvents.map((event) => (
               <ListItem
@@ -113,13 +113,13 @@ const ACalendarPage = () => {
             initialEvents={[
               {
                 id: "12315",
-                title: "All-day event",
-                date: "2022-09-14",
+                title: "Saha Toplantısı",
+                date: "2023-02-28",
               },
               {
                 id: "5123",
-                title: "Timed event",
-                date: "2022-09-28",
+                title: "Saha Bakım Çalışması",
+                date: "2023-01-10",
               },
             ]}
           />
