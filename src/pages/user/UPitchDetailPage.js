@@ -11,7 +11,6 @@ export default function UPitchDetailPage() {
   const [pitchData, setPitchData] = useState();
   useEffect(() => {
     setPitchData(pitches.find((item) => item.pitchId === parseFloat(pitchId)));
-    console.log(pitchData);
   }, [pitchId, pitches, pitchData]);
 
   return pitchData ? (

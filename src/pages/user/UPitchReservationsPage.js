@@ -8,6 +8,7 @@ export default function UPitchReservationsPage() {
   const { pitchId } = useParams();
   const { pitches, reservations } = useData();
   const [filtered, setFiltered] = useState();
+  const [tarih, setTarih] = useState("");
 
   useEffect(() => {
     const pitch = pitches.find((item) => item.pitchId === parseInt(pitchId));
@@ -16,13 +17,13 @@ export default function UPitchReservationsPage() {
     setFiltered(
       sessions?.filter(
         (session) =>
-          !reservations.some((reservation) => reservation.date === tarih)
+          !reservations.some(
+            (reservation) =>
+              reservation.date === tarih && reservation.pitchId === pitch.pitchId
+          )
       )
     );
-    console.log(filtered);
-  }, [!filtered, reservations, pitches]);
-
-  const [tarih, setTarih] = useState("");
+  }, [pitchId, !filtered, reservations, tarih, pitches]);
 
   const minTarih = new Date().toISOString().slice(0, 10);
   const maxTarih = new Date(Date.now() + 7 * 24 * 60 * 60 * 1000)
@@ -39,7 +40,6 @@ export default function UPitchReservationsPage() {
     }
   }
 
-  console.log(tarih);
   return filtered ? (
     <Grid container>
       <TextField
@@ -57,9 +57,14 @@ export default function UPitchReservationsPage() {
 
       {tarih && (
         <Grid xs={1} margin={"1rem"} item>
-        <Typography>seanslar:</Typography>
+          <Typography>seanslar:</Typography>
           {filtered.map((item) => (
-            <Button variant="outlined" key={item.sessionId} sx={{marginTop:"1rem"}} color="info">
+            <Button
+              variant="outlined"
+              key={item.sessionId}
+              sx={{ marginTop: "1rem" }}
+              color="info"
+            >
               {item.sessionStart} - {item.sessionFinish}
             </Button>
           ))}
