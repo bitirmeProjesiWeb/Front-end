@@ -11,12 +11,14 @@ import {
   Box,
   CssBaseline,
   IconButton,
+  Menu,
+  MenuItem,
   Toolbar,
   Typography,
   useTheme,
 } from "@mui/material";
 import { ColorModeContext, tokens } from "../../theme";
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { useData } from "../../context/Context";
 import { NavLink } from "react-router-dom";
 
@@ -25,7 +27,13 @@ export default function UNavbarCom() {
   const colors = tokens(theme.palette.mode);
   const colorMode = useContext(ColorModeContext);
 
-  const { user } = useData();
+  const { user, logoutHandle } = useData();
+
+  const [anchorEl, setAnchorEl] = useState(null);
+
+  const handleClick = (event) => {
+    setAnchorEl(event.currentTarget);
+  };
 
   return (
     <Box sx={{ display: "flex", justifyContent: "space-between", p: "2px" }}>
@@ -37,7 +45,7 @@ export default function UNavbarCom() {
       >
         <Toolbar>
           <Typography variant="h1" noWrap sx={{ flexGrow: 1 }}>
-            SporLife
+            <NavLink to="/" style={{textDecoration:"none", color:"inherit"}}>SporLife</NavLink>
           </Typography>
           <Box display="flex">
             <IconButton onClick={colorMode.toggleColorMode}>
@@ -55,9 +63,21 @@ export default function UNavbarCom() {
             <IconButton>
               <SettingsOutlined />
             </IconButton>
-            <IconButton component={NavLink} to="/profile">
+            <IconButton onClick={handleClick}>
               <Avatar alt={user.userName} src={user.avatar} />
             </IconButton>
+
+            <Menu
+              anchorEl={anchorEl}
+              keepMounted
+              open={Boolean(anchorEl)}
+              onClose={() => setAnchorEl(null)}
+            >
+              <MenuItem component={NavLink} to="/profile">
+                Profil
+              </MenuItem>
+              <MenuItem onClick={logoutHandle}>Çıkış Yap</MenuItem>
+            </Menu>
           </Box>
         </Toolbar>
       </AppBar>

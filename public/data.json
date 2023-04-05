@@ -168,6 +168,20 @@
       "pitchId": 2,
       "sessionId": 2,
       "date": "2023-04-01"
+    },
+    {
+      "reservationId": 3,
+      "userId": 1,
+      "pitchId": 1,
+      "sessionId": 4,
+      "date": "2023-04-04"
+    },
+    {
+      "reservationId": 4,
+      "userId": 2,
+      "pitchId": 2,
+      "sessionId": 2,
+      "date": "2023-04-05"
     }
   ]
 }

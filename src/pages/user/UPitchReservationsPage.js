@@ -1,4 +1,4 @@
-import { Button, Grid, Paper, TextField, Typography } from "@mui/material";
+import { Button, Grid, TextField, Typography } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { useData } from "../../context/Context";
@@ -19,7 +19,9 @@ export default function UPitchReservationsPage() {
         (session) =>
           !reservations.some(
             (reservation) =>
-              reservation.date === tarih && reservation.pitchId === pitch.pitchId
+              reservation.date === tarih &&
+              reservation.pitchId === pitch.pitchId &&
+              session.sessionId === reservation.sessionId
           )
       )
     );
@@ -41,35 +43,37 @@ export default function UPitchReservationsPage() {
   }
 
   return filtered ? (
-    <Grid container>
-      <TextField
-        type="date"
-        value={tarih}
-        onChange={tarihDegistir}
-        inputProps={{
-          min: minTarih,
-          max: maxTarih,
-          style: {
-            color: tarih < minTarih ? "red" : "inherit",
-          },
-        }}
-      />
+    <Grid container xs={10} justifyContent={"center"}>
+      <Grid xs={10}>
+        <TextField
+          type="date"
+          value={tarih}
+          onChange={tarihDegistir}
+          inputProps={{
+            min: minTarih,
+            max: maxTarih,
+            style: {
+              color: tarih < minTarih ? "red" : "inherit",
+            },
+          }}
+        />
 
-      {tarih && (
-        <Grid xs={1} margin={"1rem"} item>
-          <Typography>seanslar:</Typography>
-          {filtered.map((item) => (
-            <Button
-              variant="outlined"
-              key={item.sessionId}
-              sx={{ marginTop: "1rem" }}
-              color="info"
-            >
-              {item.sessionStart} - {item.sessionFinish}
-            </Button>
-          ))}
-        </Grid>
-      )}
+        {tarih && (
+          <Grid xs={1} item>
+            <Typography>seanslar:</Typography>
+            {filtered.map((item) => (
+              <Button
+                variant="outlined"
+                key={item.sessionId}
+                sx={{ marginTop: "1rem" }}
+                color="info"
+              >
+                {item.sessionStart} - {item.sessionFinish}
+              </Button>
+            ))}
+          </Grid>
+        )}
+      </Grid>
     </Grid>
   ) : (
     <BackdropComp />
