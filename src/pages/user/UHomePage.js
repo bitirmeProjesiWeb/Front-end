@@ -2,9 +2,19 @@ import React, { useEffect, useState } from "react";
 import { useData } from "../../context/Context";
 import MapsCom from "../../components/common/MapsCom";
 import SelectLocationForm from "../../components/common/SelectTypeLocationForm";
-import { Backdrop, CircularProgress, Grid, Paper } from "@mui/material";
+import {
+  Backdrop,
+  CircularProgress,
+  Grid,
+  Paper,
+  useTheme,
+} from "@mui/material";
+import { tokens } from "../../theme";
 
 export default function UHomePages() {
+  const theme = useTheme();
+  const colors = tokens(theme.palette.mode);
+
   const { cities } = useData();
 
   const [selectedCity, setSelectedCity] = useState();
@@ -33,7 +43,7 @@ export default function UHomePages() {
           sx={{
             padding: "4rem",
             marginY: "3rem",
-            background: "inherit",
+            background: colors.primary[400],
           }}
         >
           <SelectLocationForm
@@ -52,7 +62,7 @@ export default function UHomePages() {
           elevation={10}
           sx={{
             padding: "1rem",
-            background: "inherit",
+            background: colors.primary[400],
           }}
         >
           <MapsCom

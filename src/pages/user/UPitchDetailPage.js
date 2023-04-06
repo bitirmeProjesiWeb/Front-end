@@ -1,11 +1,22 @@
-import { Button, Divider, Grid, Paper, Typography } from "@mui/material";
+import {
+  Button,
+  Divider,
+  Grid,
+  Paper,
+  Typography,
+  useTheme,
+} from "@mui/material";
 import React, { useEffect, useState } from "react";
 import { NavLink, useParams } from "react-router-dom";
 import MapsCom from "../../components/common/MapsCom";
 import { useData } from "../../context/Context";
 import BackdropComp from "../common/BackdropComp";
+import { tokens } from "../../theme";
 
 export default function UPitchDetailPage() {
+  const theme = useTheme();
+  const colors = tokens(theme.palette.mode);
+
   const { pitchId } = useParams();
   const { pitches } = useData();
   const [pitchData, setPitchData] = useState();
@@ -21,7 +32,7 @@ export default function UPitchDetailPage() {
           sx={{
             width: "100%",
             height: "100%",
-            background: "inherit",
+            background: colors.primary[400],
             padding: "1rem",
           }}
         >
@@ -34,7 +45,7 @@ export default function UPitchDetailPage() {
           sx={{
             width: "100%",
             height: "100%",
-            background: "inherit",
+            background: colors.primary[400],
             padding: "1rem",
           }}
         >
@@ -69,8 +80,8 @@ export default function UPitchDetailPage() {
             sx={{
               width: "100%",
               height: "100%",
-              background: "inherit",
               padding: "1rem",
+              background: colors.primary[400],
             }}
           >
             <MapsCom
