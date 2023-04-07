@@ -110,7 +110,7 @@ export default function UPitchReservationsPage() {
                   </Button>
                 ) : (
                   <Button
-                    variant="outlined"
+                    variant="contained"
                     key={item.sessionId}
                     sx={{ marginTop: "1rem" }}
                     color="error"
