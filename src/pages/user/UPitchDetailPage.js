@@ -1,4 +1,6 @@
 import {
+  Badge,
+  Box,
   Button,
   Divider,
   Grid,
@@ -36,7 +38,13 @@ export default function UPitchDetailPage() {
             padding: "1rem",
           }}
         >
-          <img width="100%" alt={pitchData.pitchTitle} src={pitchData.image} />
+          <img
+            width="100%"
+            height="auto"
+            style={{ objectFit: "contain" }}
+            alt={pitchData.pitchTitle}
+            src={pitchData.image}
+          />
         </Paper>
       </Grid>
       <Grid item xs={7}>
@@ -52,25 +60,22 @@ export default function UPitchDetailPage() {
           <Typography variant="h1">{pitchData.pitchTitle}</Typography>
 
           <Divider sx={{ marginY: "0.5rem" }} />
-          <Typography variant="h3" color="textSecondary">
+          <Box display="flex" justifyContent="space-between">
+            <Typography variant="h6" color="textSecondary">
+              Ücret: {pitchData.price} ₺
+            </Typography>
+            <Button
+              component={NavLink}
+              to={`/pitchreservation/${pitchId}`}
+              variant="outlined"
+              color="success"
+            >
+              Rezervasyon Yap
+            </Button>
+          </Box>
+          <Typography marginTop="2rem" variant="h5" color="textSecondary">
             {pitchData.description}
           </Typography>
-
-          <Typography
-            variant="h6"
-            sx={{ textAlign: "end" }}
-            color="textSecondary"
-          >
-            Ücret: {pitchData.price} ₺
-          </Typography>
-          <Button
-            component={NavLink}
-            to={`/pitchreservation/${pitchId}`}
-            variant="outlined"
-            color="success"
-          >
-            Rezervasyon Yap
-          </Button>
         </Paper>
       </Grid>
       <Grid item xs={10}>

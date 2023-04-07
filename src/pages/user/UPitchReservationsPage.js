@@ -1,10 +1,22 @@
-import { Button, Grid, TextField, Typography } from "@mui/material";
+import {
+  Button,
+  Grid,
+  Paper,
+  TextField,
+  Typography,
+  useTheme,
+} from "@mui/material";
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { useData } from "../../context/Context";
 import BackdropComp from "../common/BackdropComp";
+import { tokens } from "../../theme";
+import { Box } from "@mui/system";
 
 export default function UPitchReservationsPage() {
+  const theme = useTheme();
+  const colors = tokens(theme.palette.mode);
+
   const { pitchId } = useParams();
   const { pitches, reservations } = useData();
   const [filtered, setFiltered] = useState();
@@ -15,14 +27,15 @@ export default function UPitchReservationsPage() {
     const sessions = pitch?.sessions;
 
     setFiltered(
-      sessions?.filter(
-        (session) =>
-          !reservations.some(
-            (reservation) =>
-              reservation.date === tarih &&
-              reservation.pitchId === pitch.pitchId &&
-              session.sessionId === reservation.sessionId
-          )
+      sessions?.map((session) =>
+        !reservations.some(
+          (reservation) =>
+            reservation.date === tarih &&
+            reservation.pitchId === pitch.pitchId &&
+            session.sessionId === reservation.sessionId
+        )
+          ? session
+          : { ...session, emp: true }
       )
     );
   }, [pitchId, !filtered, reservations, tarih, pitches]);
@@ -43,36 +56,72 @@ export default function UPitchReservationsPage() {
   }
 
   return filtered ? (
-    <Grid container xs={10} justifyContent={"center"}>
-      <Grid xs={10}>
-        <TextField
-          type="date"
-          value={tarih}
-          onChange={tarihDegistir}
-          inputProps={{
-            min: minTarih,
-            max: maxTarih,
-            style: {
-              color: tarih < minTarih ? "red" : "inherit",
-            },
+    <Grid container marginTop={4} spacing={4} justifyContent={"center"}>
+      <Grid item xs={8}>
+        <Paper
+          elevation={20}
+          sx={{
+            width: "100%",
+            height: "100%",
+            background: colors.primary[400],
+            padding: "1rem",
           }}
-        />
-
-        {tarih && (
-          <Grid xs={1} item>
-            <Typography>seanslar:</Typography>
-            {filtered.map((item) => (
-              <Button
-                variant="outlined"
-                key={item.sessionId}
-                sx={{ marginTop: "1rem" }}
-                color="info"
-              >
-                {item.sessionStart} - {item.sessionFinish}
-              </Button>
-            ))}
-          </Grid>
-        )}
+        >
+          <Box display={"flex"} justifyContent={"center"}>
+            <TextField
+              type="date"
+              value={tarih}
+              onChange={tarihDegistir}
+              inputProps={{
+                min: minTarih,
+                max: maxTarih,
+                style: {
+                  color: tarih < minTarih ? "red" : "inherit",
+                },
+              }}
+            />
+          </Box>
+        </Paper>
+      </Grid>
+      <Grid item xs={8}>
+        <Paper
+          elevation={20}
+          sx={{
+            width: "100%",
+            height: "auto",
+            background: colors.primary[400],
+            padding: "1rem",
+          }}
+        >
+          <Typography align="center" variant="h4">
+            seanslar
+          </Typography>
+          <Box display={"flex"} justifyContent={"center"}>
+            {tarih &&
+              filtered.map((item) =>
+                !item.emp ? (
+                  <Button
+                    variant="outlined"
+                    key={item.sessionId}
+                    sx={{ marginTop: "1rem" }}
+                    color="info"
+                  >
+                    {item.sessionStart} - {item.sessionFinish}
+                  </Button>
+                ) : (
+                  <Button
+                    variant="outlined"
+                    key={item.sessionId}
+                    sx={{ marginTop: "1rem" }}
+                    color="error"
+                    onClick={() => alert("dolu")}
+                  >
+                    {item.sessionStart} - {item.sessionFinish}
+                  </Button>
+                )
+              )}
+          </Box>
+        </Paper>
       </Grid>
     </Grid>
   ) : (

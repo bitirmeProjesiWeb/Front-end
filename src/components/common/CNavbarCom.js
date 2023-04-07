@@ -33,7 +33,7 @@ export default function CNavbarCom() {
       >
         <Toolbar>
           <Typography variant="h1" noWrap sx={{ flexGrow: 1 }}>
-            SporLife
+            <NavLink to="/" style={{textDecoration:"none", color:"inherit"}}>SporLife</NavLink>
           </Typography>
           <Box display="flex">
             <IconButton onClick={colorMode.toggleColorMode}>
