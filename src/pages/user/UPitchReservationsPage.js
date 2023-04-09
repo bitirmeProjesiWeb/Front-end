@@ -9,9 +9,9 @@ import {
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { useData } from "../../context/Context";
-import BackdropComp from "../common/BackdropComp";
 import { tokens } from "../../theme";
 import { Box } from "@mui/system";
+import BackdropComp from "../../components/common/BackdropComp";
 
 export default function UPitchReservationsPage() {
   const theme = useTheme();

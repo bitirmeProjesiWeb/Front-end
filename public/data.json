@@ -34,7 +34,7 @@
   "pitches": [
     {
       "pitchId": 1,
-      "pitchTitle": "Saha 1",
+      "pitchTitle": "Zeytinburnu halı sahası",
       "pitchOwnerId": 1,
       "sessions": [
         {
@@ -74,7 +74,7 @@
     },
     {
       "pitchId": 2,
-      "pitchTitle": "saha 2",
+      "pitchTitle": "Beylikdüzü halı sahası",
       "pitchOwnerId": 3,
       "sessions": [
         {
@@ -114,7 +114,7 @@
     },
     {
       "pitchId": 3,
-      "pitchTitle": "saha 3",
+      "pitchTitle": "Beyoğlu halı sahası",
       "pitchOwnerId": 3,
       "sessions": [
         {
@@ -154,7 +154,7 @@
     },
     {
       "pitchId": 4,
-      "pitchTitle": "saha 4",
+      "pitchTitle": "Fatih basketbol sahası",
       "pitchOwnerId": 1,
       "sessions": [
         {
@@ -194,7 +194,7 @@
     },
     {
       "pitchId": 5,
-      "pitchTitle": "saha 5",
+      "pitchTitle": "Güngören voleybol sahası",
       "pitchOwnerId": 1,
       "sessions": [
         {
@@ -234,7 +234,7 @@
     },
     {
       "pitchId": 6,
-      "pitchTitle": "saha 6",
+      "pitchTitle": "Zeytinburnu tenis kortu",
       "pitchOwnerId": 1,
       "sessions": [
         {
@@ -291,7 +291,7 @@
     {
       "reservationId": 3,
       "userId": 1,
-      "pitchId": 1,
+      "pitchId": 3,
       "sessionId": 4,
       "date": "2023-04-10"
     },
@@ -301,6 +301,20 @@
       "pitchId": 2,
       "sessionId": 2,
       "date": "2023-04-06"
+    },
+    {
+      "reservationId": 3,
+      "userId": 1,
+      "pitchId": 4,
+      "sessionId": 4,
+      "date": "2023-04-13"
+    },
+    {
+      "reservationId": 4,
+      "userId": 2,
+      "pitchId": 2,
+      "sessionId": 2,
+      "date": "2023-04-05"
     }
   ]
 }

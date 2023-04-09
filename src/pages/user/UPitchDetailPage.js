@@ -1,5 +1,4 @@
 import {
-  Badge,
   Box,
   Button,
   Divider,
@@ -12,7 +11,7 @@ import React, { useEffect, useState } from "react";
 import { NavLink, useParams } from "react-router-dom";
 import MapsCom from "../../components/common/MapsCom";
 import { useData } from "../../context/Context";
-import BackdropComp from "../common/BackdropComp";
+import BackdropComp from "../../components/common/BackdropComp";
 import { tokens } from "../../theme";
 
 export default function UPitchDetailPage() {

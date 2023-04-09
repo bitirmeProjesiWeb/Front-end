@@ -1,6 +1,7 @@
 import CommonLayout from "./pages/common/CommonLayout";
 import LoginPage from "./pages/common/LoginPage";
 import RegisterPage from "./pages/common/RegisterPage";
+import ForgotPasswordPage from "./pages/common/ForgotPasswordPage";
 
 import UHomePage from "./pages/user/UHomePage";
 import UProfilePage from "./pages/user/UProfilePage";
@@ -59,6 +60,10 @@ const routes = [
   {
     path: "/register",
     element: <RegisterPage />,
+  },
+  {
+    path: "/forgotpassword",
+    element: <ForgotPasswordPage/>,
   },
   {
     path: "*",
