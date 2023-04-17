@@ -38,6 +38,7 @@ export default function RegisterPage() {
     <Container maxWidth="sm">
       <AppBar
         position="static"
+        color="inherit"
         sx={{ background: colors.primary[400], marginTop: "5rem" }}
       >
         <Tabs
@@ -49,7 +50,7 @@ export default function RegisterPage() {
           aria-label="full width tabs example"
           sx={{
             "& .MuiTabs-indicator": {
-              backgroundColor: "cyan",
+              backgroundColor: "darkslateblue",
             },
           }}
         >
