@@ -209,75 +209,152 @@
   "aReservations": [
     {
       "id": 1,
-      "name": "Jon Snow",
-      "email": "jonsnow@gmail.com",
-      "age": 35,
-      "phone": "(665)121-5454",
+      "name": "Bağcılar Futbol Sahası",
+      "email": "EDİLMEDİ",
+      "phone": "12.02.2023 15.00-17.00",
       "access": "admin"
     },
     {
       "id": 2,
-      "name": "Cersei Lannister",
-      "email": "cerseilannister@gmail.com",
-      "age": 42,
-      "phone": "(421)314-2288",
+      "name": "Bağcılar Futbol Sahası",
+      "email": "İPTAL",
+      "phone": "12.02.2023 17.00-19.00",
       "access": "manager"
     },
     {
       "id": 3,
-      "name": "Jaime Lannister",
-      "email": "jaimelannister@gmail.com",
-      "age": 45,
-      "phone": "(422)982-6739",
+      "name": "Bağcılar Futbol Sahası",
+      "email": "EDİLMEDİ",
+      "phone": "12.02.2023 19.00-21.00",
       "access": "user"
     },
     {
       "id": 4,
-      "name": "Anya Stark",
-      "email": "anyastark@gmail.com",
-      "age": 16,
-      "phone": "(921)425-6742",
+      "name": "Bağcılar Futbol Sahası",
+      "email": "EDİLMEDİ",
+      "phone": "12.02.2023 21.00-23.00",
       "access": "admin"
     },
     {
       "id": 5,
-      "name": "Daenerys Targaryen",
-      "email": "daenerystargaryen@gmail.com",
-      "age": 31,
-      "phone": "(421)445-1189",
+      "name": "Bağcılar Futbol Sahası",
+      "email": "EDİLMEDİ",
+      "phone": "13.02.2023 10.00-12.00",
       "access": "user"
     },
     {
       "id": 6,
-      "name": "Ever Melisandre",
-      "email": "evermelisandre@gmail.com",
-      "age": 150,
-      "phone": "(232)545-6483",
+      "name": "Bağcılar Futbol Sahası",
+      "email": "EDİLMEDİ",
+      "phone": "13.02.2023 13.00-15.00",
       "access": "manager"
     },
     {
       "id": 7,
-      "name": "Ferrara Clifford",
-      "email": "ferraraclifford@gmail.com",
-      "age": 44,
-      "phone": "(543)124-0123",
+      "name": "Bağcılar Futbol Sahası",
+      "email": "EDİLMEDİ",
+      "phone": "13.02.2023 16.00-18.00",
       "access": "user"
     },
     {
       "id": 8,
-      "name": "Rossini Frances",
-      "email": "rossinifrances@gmail.com",
-      "age": 36,
-      "phone": "(222)444-5555",
+      "name": "Bağcılar Futbol Sahası",
+      "email": "İPTAL",
+      "phone": "13.02.2023 19.00-21.00",
       "access": "user"
     },
     {
       "id": 9,
-      "name": "Harvey Roxie",
-      "email": "harveyroxie@gmail.com",
-      "age": 65,
-      "phone": "(444)555-6239",
+      "name": "Bağcılar Futbol Sahası",
+      "email": "İPTAL",
+      "phone": "13.02.2023 22.00-00.00",
       "access": "admin"
+    }
+  ],
+"aQuestions": [
+    {
+      "questionId": "1",
+      "username": "Şevval Şenel",
+      "question":  "Saha boyutları nedir?",
+      "subquestion": "Saha boyutları hakkında detaylı bilgi alabilir miyim?"
+    },
+    {
+      "questionId": "2",
+      "username": "Kübra Kılınç",
+      "question":  "Soyunma odası hk.",
+      "subquestion": "Soyunma odası var mı ?"
+    },
+    {
+      "questionId": "3",
+      "username": "Tuba Nur Yeşiltaş",
+      "question":  "Saha Konumu hk.",
+      "subquestion": "Saha meydana yakın mı?"
+    },
+    {
+      "questionId": "4",
+      "username": "Ferhat Çiçek",
+      "question":  "Saha Boyutu hk.",
+      "subquestion": "Saha boyutu ölçüleri neler?"
+    }
+  ],
+  "aComments": [
+    {
+      "commentId": "1",
+      "username": "Şevval Şenel",
+      "comment":  "MEMNUNİYET",
+      "subcomment": "Saha aşırı bakımlı ve çalışanlar güleryüzlüydü."
+    },
+    {
+      "commentId": "2",
+      "username": "Kübra Kılınç",
+      "comment":  "Soyunma odası hk.",
+      "subcomment": "Soyunma odasına bayıldık."
+    },
+    {
+      "commentId": "3",
+      "username": "Tuba Nur Yeşiltaş",
+      "comment":  "Saha Konumu hk.",
+      "subcomment": "Metrodan 200 metre sola yürüdüğünüzde hemen karşınıza çıkıyor."
+    },
+    {
+      "commentId": "4",
+      "username": "Ferhat Çiçek",
+      "comment":  "Saha Boyutu hk.",
+      "subcomment": "Saha boyutu normal sahalardan bir tık küçüktü fakat bu iyi bir özellik."
+    }
+  ],
+  "pitchList": [
+    {
+      "id": "1",
+      "pitchName": "Bağcılar Futbol Sahası"
+    },
+    {
+      "id": "2",
+      "pitchName": "Bağcılar Basketbol Sahası"
+    },
+    {
+      "id": "3",
+      "pitchName": "Bağcılar Tenis Sahası"
+    },
+    {
+      "id": "4",
+      "pitchName": "Sarıyer Futbol Sahası"
+    },
+    {
+      "id": "5",
+      "pitchName": "Sarıyer Basketbol Sahası"
+    },
+    {
+      "id": "6",
+      "pitchName": "Sarıyer Tenis Sahası"
+    },
+    {
+      "id": "7",
+      "pitchName": "Güngören Futbol Sahası"
+    },
+    {
+      "id": "8",
+      "pitchName": "Zeytinburnu Futbol Sahası"
     }
   ]
 }
