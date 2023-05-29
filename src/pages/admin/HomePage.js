@@ -1,4 +1,4 @@
-import { Box, Typography, useTheme } from "@mui/material";
+import { Box, Rating, Typography, useTheme } from "@mui/material";
 import { tokens } from "../../theme";
 //import { mockTransactions } from "../../data/mockData";
 import AHeader from "../../components/admin/AHeader";
@@ -112,6 +112,7 @@ export default function HomePages() {
             subtitle="Bağcılar Spor Salonu"
             increase="%70"
           />
+          
           <ACapacityChart isDashboard={true} />
         </Box>
         <Box
@@ -119,40 +120,25 @@ export default function HomePages() {
           backgroundColor={colors.primary[400]}
           display="flex"
           alignItems="center"
-          justifyContent="center"
+          // justifyContent="center"
+          flexDirection="column"
+          pt={5}
+          paddingLeft={2}
+          paddingRight={2}
         >
-          SATICI PUANIM
-          {/* <StatBox
-          title="32,441"
-          subtitle="New Clients"
-          progress="0.30"
-          increase="+5%"
-          icon={
-            <PersonAddIcon
-              sx={{ color: colors.greenAccent[600], fontSize: "26px" }}
-            />
-          }
-        /> */}
+          <Typography
+            color={colors.grey[100]}
+            variant="h5"
+            fontWeight="600"
+            textAlign="center"
+            marginBottom={2}
+          >
+            Bağcılar Spor Sahası Memnuniyet Oranı
+          </Typography>
+          <Rating  name="disabled"  disabled />
+
         </Box>
-        {/* <Box
-        gridColumn="span 3"
-        backgroundColor={colors.primary[400]}
-        display="flex"
-        alignItems="center"
-        justifyContent="center"
-      > */}
-        {/* <StatBox
-          title="1,325,134"
-          subtitle="Traffic Received"
-          progress="0.80"
-          increase="+43%"
-          icon={
-            <TrafficIcon
-              sx={{ color: colors.greenAccent[600], fontSize: "26px" }}
-            />
-          }
-        /> */}
-        {/* </Box> */}
+
 
         {/* ROW 2 */}
         <Box
