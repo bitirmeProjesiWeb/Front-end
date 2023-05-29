@@ -16,6 +16,15 @@ const Provider = ({ children }) => {
 
   const [user, setUser] = useState();
 
+  //Sorular
+  const [aQuestions, setAquestions] = useState();
+
+  //Yorumlar
+  const [aComments, setAComments] = useState();
+
+  //Saha Listesi
+  const [pitchList, setPitchList] = useState();
+
   useEffect(() => {
     const getirData = async () => {
       const result = await axios("/data.json");
@@ -24,15 +33,20 @@ const Provider = ({ children }) => {
       setACapacityData(result.data.aCapacityChartData);
       setAUpComingR(result.data.aUpComingReservations);
       setAReservations(result.data.aReservations);
+      setAquestions(result.data.aQuestions);
+      setAComments(result.data.aComments);
+      setPitchList(result.data.pitchList);
     };
     getirData();
   }, [setALineData]);
 
-
- // Verileri tarih sırasına göre sırala
- const sortedReservations = aUpComingR && aUpComingR.sort((a, b) => {
-  return new Date(a.date) - new Date(b.date);
-});
+  console.log(aQuestions);
+  // Verileri tarih sırasına göre sırala
+  const sortedReservations =
+    aUpComingR &&
+    aUpComingR.sort((a, b) => {
+      return new Date(a.date) - new Date(b.date);
+    });
 
   const values = {
     items,
@@ -47,7 +61,13 @@ const Provider = ({ children }) => {
     setAUpComingR,
     sortedReservations,
     aReservations,
-    setAReservations
+    setAReservations,
+    aQuestions,
+    setAquestions,
+    aComments,
+    setAComments,
+    pitchList,
+    setPitchList
   };
 
   return <Context.Provider value={values}>{children}</Context.Provider>;
