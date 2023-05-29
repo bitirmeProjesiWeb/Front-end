@@ -67,13 +67,7 @@ const sidebarListItems = [
     link: "yorumlar",
   },
   {},
-  {
-    key: 6,
-    type: "listItem",
-    icon: <StoreOutlined />,
-    text: "Kurum Yönetimi",
-    link: "kurumYonetimi",
-  },
+
 ];
 
 function SidebarListItemCom({ item }) {
