@@ -1,13 +1,34 @@
-import React from "react";
-import { useData } from "../../context/Context";
+import React, { useEffect, useState } from "react";
 import { Backdrop, Box, CircularProgress } from "@mui/material";
 import CardCom from "../../components/common/CardCom";
 import { useParams } from "react-router-dom";
+import axios from "axios";
 
 export default function UPitchesPage() {
-  const { pitches } = useData();
+  const [pitches, setPitches] = useState();
   const { il, ilce, tip } = useParams();
-  return pitches ? (
+
+  const getData = async () => {
+    const saha = (await axios.get("http://localhost:5000/pitches")).data;
+    setPitches(saha);
+  };
+
+  useEffect(() => {
+    getData();
+  }, []);
+
+  if (!pitches) {
+    return (
+      <Backdrop
+        sx={{ color: "#fff", zIndex: (theme) => theme.zIndex.drawer + 1 }}
+        open={true}
+      >
+        <CircularProgress color="inherit" />
+      </Backdrop>
+    );
+  }
+
+  return (
     <Box sx={{ margin: "20px" }} style={{ display: "flex", flexWrap: "wrap" }}>
       {pitches
         .filter(
@@ -20,12 +41,5 @@ export default function UPitchesPage() {
           <CardCom key={item.pitchId} {...item} />
         ))}
     </Box>
-  ) : (
-    <Backdrop
-      sx={{ color: "#fff", zIndex: (theme) => theme.zIndex.drawer + 1 }}
-      open={true}
-    >
-      <CircularProgress color="inherit" />
-    </Backdrop>
   );
 }

@@ -27,7 +27,7 @@ export default function UNavbarCom() {
   const colors = tokens(theme.palette.mode);
   const colorMode = useContext(ColorModeContext);
 
-  const { user, logoutHandle } = useData();
+  const { user, setUser } = useData();
 
   const [anchorEl, setAnchorEl] = useState(null);
 
@@ -45,7 +45,12 @@ export default function UNavbarCom() {
       >
         <Toolbar>
           <Typography variant="h1" noWrap sx={{ flexGrow: 1 }}>
-            <NavLink to="/" style={{textDecoration:"none", color:"inherit"}}>SporLife</NavLink>
+            <NavLink
+              to="/"
+              style={{ textDecoration: "none", color: "inherit" }}
+            >
+              SporLife
+            </NavLink>
           </Typography>
           <Box display="flex">
             <IconButton onClick={colorMode.toggleColorMode}>
@@ -76,7 +81,7 @@ export default function UNavbarCom() {
               <MenuItem component={NavLink} to="/profile">
                 Profil
               </MenuItem>
-              <MenuItem onClick={logoutHandle}>Çıkış Yap</MenuItem>
+              <MenuItem onClick={() => setUser(false)}>Çıkış Yap</MenuItem>
             </Menu>
           </Box>
         </Toolbar>

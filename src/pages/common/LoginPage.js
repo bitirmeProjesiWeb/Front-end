@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 import {
   TextField,
@@ -12,21 +12,27 @@ import {
 } from "@mui/material";
 import { useData } from "../../context/Context";
 import { tokens } from "../../theme";
+import axios from "axios";
 
 export default function LoginPage() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const { loginHandle } = useData();
+  const { user, setUser } = useData();
 
   const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    //todo login fonksiyonu
+
     if (email && password) {
-      loginHandle({ email, password })
-        ? navigate("/")
-        : alert("böyle bir hesap bulunamadı");
+      await axios
+        .get(`http://localhost:5000/users?email=${email}&&password=${password}`)
+        .then((res) => {
+          setUser(res.data[0]);
+        });
+
+      console.log(user);
+      user ? navigate("/") : alert("böyle bir hesap bulunamadı");
     }
   };
 

@@ -12,20 +12,23 @@ import {
   Typography,
   useTheme,
 } from "@mui/material";
-import React, { useState } from "react";
+import React from "react";
 import { tokens } from "../../theme";
 import { useData } from "../../context/Context";
 import { Edit } from "@mui/icons-material";
 import BackdropComp from "../../components/common/BackdropComp";
+import axios from "axios";
 export default function ProfilePages() {
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
 
-  const { user, reservations, pitches } = useData();
-
+  const { user, pitches } = useData();
+  const reservations = axios.get(
+    `http://localhost:5000/reservations?userId=${user.id}`
+  ).data;
   const tarih = new Date(Date.now()).toISOString().slice(0, 10);
 
-  return reservations && pitches ? (
+  return pitches ? (
     <Grid container justifyContent={"center"} marginTop={4} spacing={4}>
       <Grid item>
         <Paper
@@ -139,11 +142,7 @@ export default function ProfilePages() {
               </Typography>
               <List>
                 {reservations
-                  .filter(
-                    (reservation) =>
-                      reservation.userId === user.userId &&
-                      reservation.date >= tarih
-                  )
+                  .filter((reservation) => reservation.date >= tarih)
                   .map((reservation) => (
                     <ListItem key={reservation.reservationId}>
                       {pitches
@@ -212,11 +211,7 @@ export default function ProfilePages() {
               </Typography>
               <List>
                 {reservations
-                  .filter(
-                    (reservation) =>
-                      reservation.userId === user.userId &&
-                      reservation.date <= tarih
-                  )
+                  .filter((reservation) => reservation.date <= tarih)
                   .map((reservation) => (
                     <ListItem key={reservation.reservationId}>
                       {pitches
@@ -281,44 +276,42 @@ export default function ProfilePages() {
                 Öneriler
               </Typography>
               <List>
-                {reservations
-                  .filter((reservation) => reservation.userId === user.userId)
-                  .map((reservation) => (
-                    <ListItem key={reservation.reservationId}>
-                      {pitches
-                        .filter((item) => item.pitchId === reservation.pitchId)
-                        .map((pitch) => (
-                          <Paper
-                            key={pitch.pitchId}
-                            sx={{
-                              padding: "1rem",
-                              backgroundColor: colors.primary[400],
-                              width: "100%",
-                            }}
+                {reservations.map((reservation) => (
+                  <ListItem key={reservation.reservationId}>
+                    {pitches
+                      .filter((item) => item.pitchId === reservation.pitchId)
+                      .map((pitch) => (
+                        <Paper
+                          key={pitch.pitchId}
+                          sx={{
+                            padding: "1rem",
+                            backgroundColor: colors.primary[400],
+                            width: "100%",
+                          }}
+                        >
+                          <Typography variant="h5">
+                            {pitch.pitchTitle}
+                          </Typography>
+                          <Typography variant="h6" color="textSecondary">
+                            Daha önce {pitch.pitchId} kere rezervasyon
+                            yaptırdınız.
+                          </Typography>
+                          <Box
+                            display="flex"
+                            marginTop="1rem"
+                            justifyContent="space-between"
                           >
-                            <Typography variant="h5">
-                              {pitch.pitchTitle}
-                            </Typography>
-                            <Typography variant="h6" color="textSecondary">
-                              Daha önce {pitch.pitchId} kere rezervasyon
-                              yaptırdınız.
-                            </Typography>
-                            <Box
-                              display="flex"
-                              marginTop="1rem"
-                              justifyContent="space-between"
-                            >
-                              <Button variant="outlined" color="info">
-                                İncele
-                              </Button>
-                              <Button variant="outlined" color="warning">
-                                Rezervasyon Yap
-                              </Button>
-                            </Box>
-                          </Paper>
-                        ))}
-                    </ListItem>
-                  ))}
+                            <Button variant="outlined" color="info">
+                              İncele
+                            </Button>
+                            <Button variant="outlined" color="warning">
+                              Rezervasyon Yap
+                            </Button>
+                          </Box>
+                        </Paper>
+                      ))}
+                  </ListItem>
+                ))}
               </List>
             </Paper>
           </Grid>
