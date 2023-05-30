@@ -4,7 +4,6 @@ const Context = createContext();
 
 const Provider = ({ children }) => {
   const [cities, setCities] = useState();
-  const [reservations, setReservations] = useState();
 
   const [user, setUser] = useState(() => {
     const storedUser = localStorage.getItem("user");
@@ -31,7 +30,6 @@ const Provider = ({ children }) => {
     setUser,
     user,
     cities,
-    setReservations,
   };
 
   return <Context.Provider value={values}>{children}</Context.Provider>;

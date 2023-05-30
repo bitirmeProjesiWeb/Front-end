@@ -12,23 +12,39 @@ import {
   Typography,
   useTheme,
 } from "@mui/material";
-import React from "react";
+import React, { useState } from "react";
 import { tokens } from "../../theme";
 import { useData } from "../../context/Context";
 import { Edit } from "@mui/icons-material";
 import BackdropComp from "../../components/common/BackdropComp";
 import axios from "axios";
+
 export default function ProfilePages() {
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
 
-  const { user, pitches } = useData();
-  const reservations = axios.get(
-    `http://localhost:5000/reservations?userId=${user.id}`
-  ).data;
+  const [reservations, setReservations] = useState();
+  const [pitches, setPitches] = useState();
+
+  const { user } = useData();
+  const getData = async () => {
+    await axios
+      .get(`http://localhost:5000/reservations?userId=${user.id}`)
+      .then((res) => setReservations(res.data));
+    await axios
+      .get(`http://localhost:5000/pitches`)
+      .then((res) => setPitches(res.data));
+  };
+  getData();
   const tarih = new Date(Date.now()).toISOString().slice(0, 10);
 
-  return pitches ? (
+  console.log(pitches);
+
+  if (!reservations || !pitches) {
+    return <BackdropComp />;
+  }
+
+  return (
     <Grid container justifyContent={"center"} marginTop={4} spacing={4}>
       <Grid item>
         <Paper
@@ -318,7 +334,5 @@ export default function ProfilePages() {
         </Grid>
       </Grid>
     </Grid>
-  ) : (
-    <BackdropComp />
   );
 }

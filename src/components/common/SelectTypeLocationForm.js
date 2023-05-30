@@ -8,6 +8,7 @@ import {
   Select,
   TextField,
 } from "@mui/material";
+import axios from "axios";
 import React from "react";
 import { useNavigate } from "react-router-dom";
 
@@ -39,15 +40,21 @@ export default function SelectLocationForm({
 
   const navigate = useNavigate();
 
-  const searchHandle = (e) => {
+  const searchHandle = async (e) => {
     e.preventDefault();
-    selectedCity && type !== 0
-      ? navigate(
-          `/pitches/${selectedCity.id}/${
-            selectedCounties ? selectedCounties.id : 0
-          }/${type}`
-        )
-      :selectedCity ? alert("il seç") : alert("saha tipi seç");
+    if (selectedCity && type !== 0) {
+      // navigate(
+      //   `/pitches/${selectedCity.name}/${
+      //     selectedCounties ? selectedCounties.name : 0
+      //   }/${type}`
+      // );
+      const data = { county: selectedCounties.name, type: type };
+      await axios
+        .post("https://localhost:7018/api/Pitch/TypePitch", data)
+        .then((res) => console.log(res));
+    } else {
+      selectedCity ? alert("il seç") : alert("saha tipi seç");
+    }
   };
 
   const typeHandle = (e) => {
@@ -59,9 +66,9 @@ export default function SelectLocationForm({
         <InputLabel>Saha Tipi</InputLabel>
         <Select value={type} label="Saha Türü" onChange={typeHandle}>
           <MenuItem value={"halı"}>Halı Sahası</MenuItem>
-          <MenuItem value={"basketbol"}>Basketbol Sahası</MenuItem>
-          <MenuItem value={"voleybol"}>Voleybol Sahası</MenuItem>
-          <MenuItem value={"tenis"}>Tenis Kortu</MenuItem>
+          <MenuItem value={"Basketbol"}>Basketbol Sahası</MenuItem>
+          <MenuItem value={"Voleybol"}>Voleybol Sahası</MenuItem>
+          <MenuItem value={"Tenis"}>Tenis Kortu</MenuItem>
         </Select>
       </FormControl>
       <Autocomplete

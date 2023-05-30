@@ -9,12 +9,14 @@ export default function UPitchesPage() {
   const { il, ilce, tip } = useParams();
 
   const getData = async () => {
-    const saha = (await axios.get("http://localhost:5000/pitches")).data;
-    setPitches(saha);
+    await axios
+      .get("http://localhost:5000/pitches")
+      .then((res) => setPitches(res.data));
   };
 
   useEffect(() => {
     getData();
+    console.log(pitches);
   }, []);
 
   if (!pitches) {
