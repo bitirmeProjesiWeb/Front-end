@@ -8,44 +8,56 @@ import {
 } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { useData } from "../../context/Context";
 import { tokens } from "../../theme";
 import { Box } from "@mui/system";
 import BackdropComp from "../../components/common/BackdropComp";
+import axios from "axios";
 
 export default function UPitchReservationsPage() {
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
 
   const { pitchId } = useParams();
-  const { pitches, reservations } = useData();
+
   const [filtered, setFiltered] = useState();
   const [tarih, setTarih] = useState("");
 
   useEffect(() => {
-    const pitch = pitches.find((item) => item.pitchId === parseInt(pitchId));
-    const sessions = pitch?.sessions;
+    const fetchData = async () => {
+      const pitchResponse = await axios.get(
+        `http://localhost:5000/pitches?pitchId=${pitchId}`
+      );
+      const reservationsResponse = await axios.get(
+        `http://localhost:5000/reservations?pitchId=${pitchId}`
+      );
 
-    setFiltered(
-      sessions?.map((session) =>
-        !reservations.some(
-          (reservation) =>
-            reservation.date === tarih &&
-            reservation.pitchId === pitch.pitchId &&
-            session.sessionId === reservation.sessionId
-        )
-          ? session
-          : { ...session, emp: true }
-      )
-    );
-  }, [pitchId, !filtered, reservations, tarih, pitches]);
+      const pitchData = pitchResponse.data[0];
+      const reservationsData = reservationsResponse.data;
+
+      if (pitchData && reservationsData) {
+        const filteredSessions = pitchData.sessions.map((session) =>
+          !reservationsData.some(
+            (reservation) =>
+              reservation.date === tarih &&
+              session.sessionId === reservation.sessionId
+          )
+            ? session
+            : { ...session, emp: true }
+        );
+
+        setFiltered(filteredSessions);
+      }
+    };
+
+    fetchData();
+  }, [pitchId, tarih]);
 
   const minTarih = new Date().toISOString().slice(0, 10);
-  const maxTarih = new Date(Date.now() + 7 * 24 * 60 * 60 * 1000)
+  const maxTarih = new Date(Date.now() + 14 * 24 * 60 * 60 * 1000)
     .toISOString()
     .slice(0, 10);
 
-  function tarihDegistir(event) {
+  const setDate = (event) => {
     const secilenTarih = event.target.value;
 
     if (secilenTarih >= minTarih && secilenTarih <= maxTarih) {
@@ -53,9 +65,13 @@ export default function UPitchReservationsPage() {
     } else {
       setTarih();
     }
+  };
+
+  if (!filtered) {
+    return <BackdropComp />;
   }
 
-  return filtered ? (
+  return (
     <Grid container marginTop={4} spacing={4} justifyContent={"center"}>
       <Grid item xs={8}>
         <Paper
@@ -71,7 +87,7 @@ export default function UPitchReservationsPage() {
             <TextField
               type="date"
               value={tarih}
-              onChange={tarihDegistir}
+              onChange={setDate}
               inputProps={{
                 min: minTarih,
                 max: maxTarih,
@@ -124,7 +140,5 @@ export default function UPitchReservationsPage() {
         </Paper>
       </Grid>
     </Grid>
-  ) : (
-    <BackdropComp />
   );
 }

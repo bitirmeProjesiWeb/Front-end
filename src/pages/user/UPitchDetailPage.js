@@ -10,22 +10,32 @@ import {
 import React, { useEffect, useState } from "react";
 import { NavLink, useParams } from "react-router-dom";
 import MapsCom from "../../components/common/MapsCom";
-import { useData } from "../../context/Context";
 import BackdropComp from "../../components/common/BackdropComp";
 import { tokens } from "../../theme";
+import axios from "axios";
 
 export default function UPitchDetailPage() {
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
 
-  const { pitchId } = useParams();
-  const { pitches } = useData();
-  const [pitchData, setPitchData] = useState();
-  useEffect(() => {
-    setPitchData(pitches.find((item) => item.pitchId === parseFloat(pitchId)));
-  }, [pitchId, pitches, pitchData]);
+  const [pitch, setPitch] = useState();
 
-  return pitchData ? (
+  const { pitchId } = useParams();
+
+  useEffect(() => {
+    const getData = async () => {
+      await axios
+        .get(`http://localhost:5000/pitches?pitchId=${pitchId}`)
+        .then((res) => setPitch(res.data[0]));
+    };
+
+    getData();
+  }, [pitchId]);
+
+  if (!pitch) {
+    return <BackdropComp />;
+  }
+  return (
     <Grid container marginTop={4} spacing={4} justifyContent="center">
       <Grid item xs={3}>
         <Paper
@@ -41,8 +51,8 @@ export default function UPitchDetailPage() {
             width="100%"
             height="auto"
             style={{ objectFit: "contain" }}
-            alt={pitchData.pitchTitle}
-            src={pitchData.image}
+            alt={pitch.pitchTitle}
+            src={pitch.image}
           />
         </Paper>
       </Grid>
@@ -56,12 +66,12 @@ export default function UPitchDetailPage() {
             padding: "1rem",
           }}
         >
-          <Typography variant="h1">{pitchData.pitchTitle}</Typography>
+          <Typography variant="h1">{pitch.pitchTitle}</Typography>
 
           <Divider sx={{ marginY: "0.5rem" }} />
           <Box display="flex" justifyContent="space-between">
             <Typography variant="h6" color="textSecondary">
-              Ücret: {pitchData.price} ₺
+              Ücret: {pitch.price} ₺
             </Typography>
             <Button
               component={NavLink}
@@ -73,12 +83,12 @@ export default function UPitchDetailPage() {
             </Button>
           </Box>
           <Typography marginTop="2rem" variant="h5" color="textSecondary">
-            {pitchData.description}
+            {pitch.description}
           </Typography>
         </Paper>
       </Grid>
       <Grid item xs={10}>
-        {pitchData && (
+        {pitch && (
           <Paper
             elevation={20}
             sx={{
@@ -90,15 +100,13 @@ export default function UPitchDetailPage() {
           >
             <MapsCom
               position={{
-                lat: pitchData.lat,
-                lng: pitchData.lng,
+                lat: pitch.lat,
+                lng: pitch.lng,
               }}
             />
           </Paper>
         )}
       </Grid>
     </Grid>
-  ) : (
-    <BackdropComp />
   );
 }

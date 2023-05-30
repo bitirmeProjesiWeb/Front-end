@@ -1,33 +1,26 @@
 import React, { useEffect, useState } from "react";
-import { Backdrop, Box, CircularProgress } from "@mui/material";
+import { Box } from "@mui/material";
 import CardCom from "../../components/common/CardCom";
 import { useParams } from "react-router-dom";
 import axios from "axios";
+import BackdropComp from "../../components/common/BackdropComp";
 
 export default function UPitchesPage() {
   const [pitches, setPitches] = useState();
   const { il, ilce, tip } = useParams();
 
-  const getData = async () => {
-    await axios
-      .get("http://localhost:5000/pitches")
-      .then((res) => setPitches(res.data));
-  };
-
   useEffect(() => {
+    const getData = async () => {
+      await axios
+        .get("http://localhost:5000/pitches")
+        .then((res) => setPitches(res.data));
+    };
+
     getData();
-    console.log(pitches);
   }, []);
 
   if (!pitches) {
-    return (
-      <Backdrop
-        sx={{ color: "#fff", zIndex: (theme) => theme.zIndex.drawer + 1 }}
-        open={true}
-      >
-        <CircularProgress color="inherit" />
-      </Backdrop>
-    );
+    return <BackdropComp />;
   }
 
   return (
@@ -35,8 +28,8 @@ export default function UPitchesPage() {
       {pitches
         .filter(
           (item) =>
-            item.ilId === il &&
-            (ilce === "0" ? true : item.ilçeId === ilce) &&
+            item.il === il &&
+            (ilce === "0" ? true : item.ilce === ilce) &&
             item.type === tip
         )
         .map((item) => (

@@ -11,14 +11,14 @@ const Provider = ({ children }) => {
   });
 
   useEffect(() => {
-    const getirData = async () => {
+    const fetchData = async () => {
       const result = await axios.get(
         "https://raw.githubusercontent.com/f6c5/world/master/turkiye-il-ilce.json"
       );
       setCities(result.data.states);
     };
-    getirData();
-  }, [!cities]);
+    fetchData();
+  }, []);
 
   useEffect(() => {
     user

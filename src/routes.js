@@ -16,7 +16,6 @@ import PrivateRoot from "./auth/PrivateRoute";
 import AdminRoute from "./auth/AdminRoute";
 import UPitchesPage from "./pages/user/UPitchesPage";
 import UPitchDetailPage from "./pages/user/UPitchDetailPage";
-import UReservationsPage from "./pages/user/UReservationsPage";
 import NotFoundPage from "./pages/common/NotFoundPage";
 import UPitchReservationsPage from "./pages/user/UPitchReservationsPage";
 
@@ -32,11 +31,6 @@ const routes = [
       {
         path: "profile",
         element: <UProfilePage />,
-        auth: true,
-      },
-      {
-        path: "reservations",
-        element: <UReservationsPage />,
         auth: true,
       },
       {
@@ -63,7 +57,7 @@ const routes = [
   },
   {
     path: "/forgotpassword",
-    element: <ForgotPasswordPage/>,
+    element: <ForgotPasswordPage />,
   },
   {
     path: "*",

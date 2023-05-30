@@ -2,14 +2,9 @@ import React, { useEffect, useState } from "react";
 import { useData } from "../../context/Context";
 import MapsCom from "../../components/common/MapsCom";
 import SelectLocationForm from "../../components/common/SelectTypeLocationForm";
-import {
-  Backdrop,
-  CircularProgress,
-  Grid,
-  Paper,
-  useTheme,
-} from "@mui/material";
+import { Grid, Paper, useTheme } from "@mui/material";
 import { tokens } from "../../theme";
+import BackdropComp from "../../components/common/BackdropComp";
 
 export default function UHomePages() {
   const theme = useTheme();
@@ -24,12 +19,15 @@ export default function UHomePages() {
   useEffect(() => {
     if (cities) {
       setSelectedCity();
-
-      selectedCity && setSelectedCounties();
+      setSelectedCounties();
     }
   }, [cities]);
 
-  return cities ? (
+  if (!cities) {
+    return <BackdropComp />;
+  }
+
+  return (
     <Grid
       container
       justifyContent="center"
@@ -87,12 +85,5 @@ export default function UHomePages() {
         </Paper>
       </Grid>
     </Grid>
-  ) : (
-    <Backdrop
-      sx={{ color: "#fff", zIndex: (theme) => theme.zIndex.drawer + 1 }}
-      open={true}
-    >
-      <CircularProgress color="inherit" />
-    </Backdrop>
   );
 }

@@ -8,7 +8,6 @@ import {
   Select,
   TextField,
 } from "@mui/material";
-import axios from "axios";
 import React from "react";
 import { useNavigate } from "react-router-dom";
 
@@ -43,15 +42,11 @@ export default function SelectLocationForm({
   const searchHandle = async (e) => {
     e.preventDefault();
     if (selectedCity && type !== 0) {
-      // navigate(
-      //   `/pitches/${selectedCity.name}/${
-      //     selectedCounties ? selectedCounties.name : 0
-      //   }/${type}`
-      // );
-      const data = { county: selectedCounties.name, type: type };
-      await axios
-        .post("https://localhost:7018/api/Pitch/TypePitch", data)
-        .then((res) => console.log(res));
+      navigate(
+        `/pitches/${selectedCity.name}/${
+          selectedCounties ? selectedCounties.name : 0
+        }/${type}`
+      );
     } else {
       selectedCity ? alert("il seç") : alert("saha tipi seç");
     }
@@ -87,7 +82,7 @@ export default function SelectLocationForm({
         disablePortal
         options={
           selectedCity
-            ? [{ id: 0, name: "Tüm ilçeler" }, ...selectedCity?.cities]
+            ? [{ id: 0, name: "Tüm-ilçeler" }, ...selectedCity?.cities]
             : []
         }
         getOptionLabel={countiesHandle}

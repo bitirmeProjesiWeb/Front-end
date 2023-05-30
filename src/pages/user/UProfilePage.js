@@ -12,7 +12,7 @@ import {
   Typography,
   useTheme,
 } from "@mui/material";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { tokens } from "../../theme";
 import { useData } from "../../context/Context";
 import { Edit } from "@mui/icons-material";
@@ -27,18 +27,25 @@ export default function ProfilePages() {
   const [pitches, setPitches] = useState();
 
   const { user } = useData();
-  const getData = async () => {
-    await axios
-      .get(`http://localhost:5000/reservations?userId=${user.id}`)
-      .then((res) => setReservations(res.data));
-    await axios
-      .get(`http://localhost:5000/pitches`)
-      .then((res) => setPitches(res.data));
-  };
-  getData();
-  const tarih = new Date(Date.now()).toISOString().slice(0, 10);
 
-  console.log(pitches);
+  useEffect(() => {
+    const fetchData = async () => {
+      const p = await axios.get(`http://localhost:5000/pitches`);
+
+      const r = await axios.get(
+        `http://localhost:5000/reservations?userId=${1}`
+      );
+
+      const pd = p.data;
+      const rd = r.data;
+      setPitches(pd);
+      setReservations(rd);
+    };
+    fetchData();
+    console.log(user.id);
+  }, [user]);
+
+  const tarih = new Date(Date.now()).toISOString().slice(0, 10);
 
   if (!reservations || !pitches) {
     return <BackdropComp />;
@@ -159,13 +166,13 @@ export default function ProfilePages() {
               <List>
                 {reservations
                   .filter((reservation) => reservation.date >= tarih)
-                  .map((reservation) => (
-                    <ListItem key={reservation.reservationId}>
+                  .map((reservation, i) => (
+                    <ListItem key={i}>
                       {pitches
                         .filter((item) => item.pitchId === reservation.pitchId)
-                        .map((pitch) => (
+                        .map((pitch, i) => (
                           <Paper
-                            key={pitch.pitchId}
+                            key={i}
                             sx={{
                               padding: "1rem",
                               width: "100%",
@@ -228,13 +235,13 @@ export default function ProfilePages() {
               <List>
                 {reservations
                   .filter((reservation) => reservation.date <= tarih)
-                  .map((reservation) => (
-                    <ListItem key={reservation.reservationId}>
+                  .map((reservation, i) => (
+                    <ListItem key={i}>
                       {pitches
                         .filter((item) => item.pitchId === reservation.pitchId)
-                        .map((pitch) => (
+                        .map((pitch, i) => (
                           <Paper
-                            key={pitch.pitchId}
+                            key={i}
                             sx={{
                               padding: "1rem",
                               backgroundColor: colors.primary[400],
@@ -292,13 +299,13 @@ export default function ProfilePages() {
                 Öneriler
               </Typography>
               <List>
-                {reservations.map((reservation) => (
-                  <ListItem key={reservation.reservationId}>
+                {reservations.map((reservation, i) => (
+                  <ListItem key={i}>
                     {pitches
                       .filter((item) => item.pitchId === reservation.pitchId)
-                      .map((pitch) => (
+                      .map((pitch, i) => (
                         <Paper
-                          key={pitch.pitchId}
+                          key={i}
                           sx={{
                             padding: "1rem",
                             backgroundColor: colors.primary[400],
