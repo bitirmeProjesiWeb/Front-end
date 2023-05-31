@@ -12,12 +12,11 @@ import AProductsPage from "./pages/admin/ProductsPage";
 import AProfilePage from "./pages/admin/ProfilePage";
 import AUsersPage from "./pages/admin/UsersPage";
 
-import PrivateRoot from "./auth/PrivateRoute";
-import AdminRoute from "./auth/AdminRoute";
 import UPitchesPage from "./pages/user/UPitchesPage";
 import UPitchDetailPage from "./pages/user/UPitchDetailPage";
 import NotFoundPage from "./pages/common/NotFoundPage";
 import UPitchReservationsPage from "./pages/user/UPitchReservationsPage";
+import PrivateRoute from "./auth/PrivateRoute";
 
 const routes = [
   {
@@ -31,7 +30,7 @@ const routes = [
       {
         path: "profile",
         element: <UProfilePage />,
-        auth: true,
+        requiredRole: "user",
       },
       {
         path: "pitches/:il/:ilce/:tip",
@@ -66,7 +65,7 @@ const routes = [
   {
     path: "/admin",
     element: <AdminLayout />,
-    // admin: true,
+    requiredRole: "admin",
     children: [
       {
         index: true,
@@ -89,13 +88,15 @@ const routes = [
   },
 ];
 
+
 const authMap = (routes) =>
   routes.map((route) => {
-    if (route?.auth) {
-      route.element = <PrivateRoot>{route.element}</PrivateRoot>;
-    }
-    if (route?.admin) {
-      route.element = <AdminRoute>{route.element}</AdminRoute>;
+    if (route?.requiredRole) {
+      route.element = (
+        <PrivateRoute requiredRole={route?.requiredRole}>
+          {route.element}
+        </PrivateRoute>
+      );
     }
     if (route?.children) {
       route.children = authMap(route.children);
