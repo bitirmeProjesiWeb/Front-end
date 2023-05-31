@@ -15,9 +15,13 @@ import { tokens } from "../../theme";
 import axios from "axios";
 
 export default function LoginPage() {
+  const theme = useTheme();
+  const colors = tokens(theme.palette.mode);
+
+  const { user, setUser } = useData();
+
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const { user, setUser } = useData();
 
   const navigate = useNavigate();
 
@@ -25,19 +29,22 @@ export default function LoginPage() {
     e.preventDefault();
 
     if (email && password) {
-      await axios
-        .get(`http://localhost:5000/users?email=${email}&&password=${password}`)
-        .then((res) => {
-          setUser(res.data[0]);
-        });
+      const u = await axios.get(
+        `http://localhost:5000/users?email=${email}&password=${password}`
+      );
+      const ud = u.data[0];
 
-      console.log(user);
-      user ? navigate("/") : alert("böyle bir hesap bulunamadı");
+      setUser(ud);
     }
   };
 
-  const theme = useTheme();
-  const colors = tokens(theme.palette.mode);
+  useEffect(() => {
+    if (user) {
+      navigate("/");
+    } else {
+      alert("böyle bir hesap bulunamadı");
+    }
+  }, [user, navigate]);
 
   return (
     <Container maxWidth="sm">

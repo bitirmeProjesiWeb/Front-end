@@ -33,16 +33,17 @@ export default function ProfilePages() {
       const p = await axios.get(`http://localhost:5000/pitches`);
 
       const r = await axios.get(
-        `http://localhost:5000/reservations?userId=${1}`
+        `http://localhost:5000/reservations?userId=${user.userId}`
       );
 
       const pd = p.data;
       const rd = r.data;
+
       setPitches(pd);
       setReservations(rd);
     };
+
     fetchData();
-    console.log(user.id);
   }, [user]);
 
   const tarih = new Date(Date.now()).toISOString().slice(0, 10);

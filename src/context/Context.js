@@ -7,7 +7,11 @@ const Provider = ({ children }) => {
 
   const [user, setUser] = useState(() => {
     const storedUser = localStorage.getItem("user");
-    return storedUser !== null ? JSON.parse(storedUser) : null;
+    if (storedUser) {
+      return JSON.parse(storedUser);
+    } else {
+      return undefined;
+    }
   });
 
   useEffect(() => {
