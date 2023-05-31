@@ -29,20 +29,21 @@ export default function LoginPage() {
     e.preventDefault();
 
     if (email && password) {
-      const u = await axios.get(
+      const ur = await axios.get(
         `http://localhost:5000/users?email=${email}&password=${password}`
       );
-      const ud = u.data[0];
-
-      setUser(ud);
+      const ud = ur.data[0];
+      if (ud) {
+        setUser(ud);
+      } else {
+        alert("böyle bir hesap bulunamadı");
+      }
     }
   };
 
   useEffect(() => {
     if (user) {
       navigate("/");
-    } else {
-      alert("böyle bir hesap bulunamadı");
     }
   }, [user, navigate]);
 

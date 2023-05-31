@@ -12,9 +12,11 @@ const Provider = ({ children }) => {
   });
 
   useEffect(() => {
-    user
-      ? localStorage.setItem("user", JSON.stringify(user))
-      : localStorage.removeItem("user");
+    if (user) {
+      localStorage.setItem("user", JSON.stringify(user));
+    } else {
+      localStorage.removeItem("user");
+    }
   }, [user]);
 
   const values = {
