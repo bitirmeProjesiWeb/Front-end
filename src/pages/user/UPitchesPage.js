@@ -10,13 +10,15 @@ export default function UPitchesPage() {
   const { il, ilce, tip } = useParams();
 
   useEffect(() => {
-    const getData = async () => {
-      await axios
-        .get("http://localhost:5000/pitches")
-        .then((res) => setPitches(res.data));
+    const fetchData = async () => {
+      const pr = await axios.get("http://localhost:5000/pitches");
+
+      const pd = pr.data;
+      
+      setPitches(pd);
     };
 
-    getData();
+    fetchData();
   }, []);
 
   if (!pitches) {

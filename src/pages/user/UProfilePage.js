@@ -30,14 +30,14 @@ export default function ProfilePages() {
 
   useEffect(() => {
     const fetchData = async () => {
-      const p = await axios.get(`http://localhost:5000/pitches`);
+      const pr = await axios.get(`http://localhost:5000/pitches`);
 
-      const r = await axios.get(
+      const rr = await axios.get(
         `http://localhost:5000/reservations?userId=${user.userId}`
       );
 
-      const pd = p.data;
-      const rd = r.data;
+      const pd = pr.data;
+      const rd = rr.data;
 
       setPitches(pd);
       setReservations(rd);

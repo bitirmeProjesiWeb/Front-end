@@ -24,19 +24,19 @@ export default function UPitchReservationsPage() {
 
   useEffect(() => {
     const fetchData = async () => {
-      const pitchResponse = await axios.get(
+      const pr = await axios.get(
         `http://localhost:5000/pitches?pitchId=${pitchId}`
       );
-      const reservationsResponse = await axios.get(
+      const rr = await axios.get(
         `http://localhost:5000/reservations?pitchId=${pitchId}`
       );
 
-      const pitchData = pitchResponse.data[0];
-      const reservationsData = reservationsResponse.data;
+      const pd = pr.data[0];
+      const rd = rr.data;
 
-      if (pitchData && reservationsData) {
-        const filteredSessions = pitchData.sessions.map((session) =>
-          !reservationsData.some(
+      if (pd && rd) {
+        const filteredSessions = pd.sessions.map((session) =>
+          !rd.some(
             (reservation) =>
               reservation.date === tarih &&
               session.sessionId === reservation.sessionId

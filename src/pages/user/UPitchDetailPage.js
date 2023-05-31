@@ -23,13 +23,17 @@ export default function UPitchDetailPage() {
   const { pitchId } = useParams();
 
   useEffect(() => {
-    const getData = async () => {
-      await axios
-        .get(`http://localhost:5000/pitches?pitchId=${pitchId}`)
-        .then((res) => setPitch(res.data[0]));
+    const fetchData = async () => {
+      const pr = await axios.get(
+        `http://localhost:5000/pitches?pitchId=${pitchId}`
+      );
+
+      const pd = pr.data[0];
+
+      setPitch(pd);
     };
 
-    getData();
+    fetchData();
   }, [pitchId]);
 
   if (!pitch) {

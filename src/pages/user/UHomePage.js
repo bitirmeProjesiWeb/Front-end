@@ -1,22 +1,33 @@
 import React, { useEffect, useState } from "react";
-import { useData } from "../../context/Context";
 import MapsCom from "../../components/common/MapsCom";
 import SelectLocationForm from "../../components/common/SelectTypeLocationForm";
 import { Grid, Paper, useTheme } from "@mui/material";
 import { tokens } from "../../theme";
 import BackdropComp from "../../components/common/BackdropComp";
+import axios from "axios";
 
 export default function UHomePages() {
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
 
-  const { cities } = useData();
-
+  const [cities, setCities] = useState();
   const [selectedCity, setSelectedCity] = useState();
   const [selectedCounties, setSelectedCounties] = useState();
   const [type, setType] = useState("");
 
   useEffect(() => {
+    const fetchData = async () => {
+      const cr = await axios.get(
+        "https://raw.githubusercontent.com/f6c5/world/master/turkiye-il-ilce.json"
+      );
+
+      const cd = cr.data;
+
+      setCities(cd.states);
+    };
+
+    fetchData();
+
     if (cities) {
       setSelectedCity();
       setSelectedCounties();
