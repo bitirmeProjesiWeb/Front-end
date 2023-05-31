@@ -16,6 +16,7 @@ import UPitchesPage from "./pages/user/UPitchesPage";
 import UPitchDetailPage from "./pages/user/UPitchDetailPage";
 import NotFoundPage from "./pages/common/NotFoundPage";
 import UPitchReservationsPage from "./pages/user/UPitchReservationsPage";
+
 import PrivateRoute from "./auth/PrivateRoute";
 
 const routes = [
@@ -98,9 +99,11 @@ const authMap = (routes) =>
         </PrivateRoute>
       );
     }
+
     if (route?.children) {
       route.children = authMap(route.children);
     }
+    
     return route;
   });
 
