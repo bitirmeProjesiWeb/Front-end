@@ -27,12 +27,7 @@ export default function UHomePages() {
     };
 
     fetchData();
-
-    if (cities) {
-      setSelectedCity();
-      setSelectedCounties();
-    }
-  }, [cities]);
+  }, []);
 
   if (!cities) {
     return <BackdropComp />;

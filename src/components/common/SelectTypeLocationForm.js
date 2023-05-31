@@ -20,11 +20,11 @@ export default function SelectLocationForm({
   type,
   setType,
 }) {
+  const navigate = useNavigate();
+
   const cityHandle = (option) => {
-    setSelectedCounties();
-    if (option.id === 0) {
-      setSelectedCounties();
-    } else {
+    setSelectedCounties(null);
+    if (option.id) {
       setSelectedCity(cities.find((ctiy) => ctiy.id === option.id));
     }
     return option.name;
@@ -37,10 +37,9 @@ export default function SelectLocationForm({
     return option.name;
   };
 
-  const navigate = useNavigate();
-
   const searchHandle = async (e) => {
     e.preventDefault();
+
     if (selectedCity && type !== 0) {
       navigate(
         `/pitches/${selectedCity.name}/${
@@ -55,6 +54,7 @@ export default function SelectLocationForm({
   const typeHandle = (e) => {
     setType(e.target.value);
   };
+
   return (
     <Box display="flex" justifyContent={"center"}>
       <FormControl color="info" sx={{ width: 300, marginRight: "20px" }}>
