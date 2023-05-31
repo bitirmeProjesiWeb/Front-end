@@ -33,7 +33,7 @@ export default function ProfilePages() {
       const pr = await axios.get(`http://localhost:5000/pitches`);
 
       const rr = await axios.get(
-        `http://localhost:5000/reservations?userId=${user.userId}`
+        `http://localhost:5000/reservations?userId=${user.id}`
       );
 
       const pd = pr.data;
@@ -170,7 +170,7 @@ export default function ProfilePages() {
                   .map((reservation, i) => (
                     <ListItem key={i}>
                       {pitches
-                        .filter((item) => item.pitchId === reservation.pitchId)
+                        .filter((item) => item.id === reservation.pitchId)
                         .map((pitch, i) => (
                           <Paper
                             key={i}
@@ -190,7 +190,7 @@ export default function ProfilePages() {
                               Seans:
                               {pitch.sessions.map(
                                 (session) =>
-                                  session.sessionId === reservation.sessionId &&
+                                  session.id === reservation.sessionId &&
                                   session.sessionStart +
                                     " - " +
                                     session.sessionFinish
@@ -239,7 +239,7 @@ export default function ProfilePages() {
                   .map((reservation, i) => (
                     <ListItem key={i}>
                       {pitches
-                        .filter((item) => item.pitchId === reservation.pitchId)
+                        .filter((item) => item.id === reservation.pitchId)
                         .map((pitch, i) => (
                           <Paper
                             key={i}
@@ -259,7 +259,7 @@ export default function ProfilePages() {
                               Seans:
                               {pitch.sessions.map(
                                 (session) =>
-                                  session.sessionId === reservation.sessionId &&
+                                  session.id === reservation.sessionId &&
                                   session.sessionStart +
                                     " - " +
                                     session.sessionFinish
@@ -303,7 +303,7 @@ export default function ProfilePages() {
                 {reservations.map((reservation, i) => (
                   <ListItem key={i}>
                     {pitches
-                      .filter((item) => item.pitchId === reservation.pitchId)
+                      .filter((item) => item.id === reservation.pitchId)
                       .map((pitch, i) => (
                         <Paper
                           key={i}
@@ -317,8 +317,7 @@ export default function ProfilePages() {
                             {pitch.pitchTitle}
                           </Typography>
                           <Typography variant="h6" color="textSecondary">
-                            Daha önce {pitch.pitchId} kere rezervasyon
-                            yaptırdınız.
+                            Daha önce {pitch.id} kere rezervasyon yaptırdınız.
                           </Typography>
                           <Box
                             display="flex"

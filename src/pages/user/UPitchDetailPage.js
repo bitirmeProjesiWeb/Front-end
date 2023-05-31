@@ -20,13 +20,11 @@ export default function UPitchDetailPage() {
 
   const [pitch, setPitch] = useState();
 
-  const { pitchId } = useParams();
+  const { id } = useParams();
 
   useEffect(() => {
     const fetchData = async () => {
-      const pr = await axios.get(
-        `http://localhost:5000/pitches?pitchId=${pitchId}`
-      );
+      const pr = await axios.get(`http://localhost:5000/pitches?id=${id}`);
 
       const pd = pr.data[0];
 
@@ -34,7 +32,7 @@ export default function UPitchDetailPage() {
     };
 
     fetchData();
-  }, [pitchId]);
+  }, [id]);
 
   if (!pitch) {
     return <BackdropComp />;
@@ -79,7 +77,7 @@ export default function UPitchDetailPage() {
             </Typography>
             <Button
               component={NavLink}
-              to={`/pitchreservation/${pitchId}`}
+              to={`/pitchreservation/${id}`}
               variant="outlined"
               color="success"
             >

@@ -10,13 +10,7 @@ import {
 import { NavLink } from "react-router-dom";
 import { tokens } from "../../theme";
 
-export default function CardCom({
-  pitchId,
-  image,
-  pitchTitle,
-  description,
-  price,
-}) {
+export default function CardCom({ id, image, pitchTitle, description, price }) {
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
   return (
@@ -46,7 +40,7 @@ export default function CardCom({
       </CardContent>
       <Button
         component={NavLink}
-        to={`/pitchdetail/${pitchId}`}
+        to={`/pitchdetail/${id}`}
         style={{ margin: "10px" }}
         size="medium"
         variant="outlined"

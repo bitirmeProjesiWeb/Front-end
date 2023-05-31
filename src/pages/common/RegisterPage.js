@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { NavLink } from "react-router-dom";
+import axios from "axios";
 import {
   TextField,
   Button,
@@ -16,24 +17,47 @@ import {
 import { tokens } from "../../theme";
 
 export default function RegisterPage() {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [tel, setTel] = useState("");
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    //todo register fonksiyonu
-  };
+  const theme = useTheme();
+  const colors = tokens(theme.palette.mode);
 
   const [value, setValue] = useState(0);
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
-    console.log(value);
   };
 
-  const theme = useTheme();
-  const colors = tokens(theme.palette.mode);
+  const [user, setUser] = useState({
+    id:1,
+    email: "",
+    password: "",
+    tel: "",
+  });
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    if (value === 0) {
+      if (user.email && user.password) {
+        const eu = await axios.get(
+          `http://localhost:5000/users?email=${user.email}`
+        );
+
+        if (eu.data[0]) {
+          alert("bu e-posta adresi kullanılmaktadır");
+        } else {
+          try {
+            const response = await axios.post(
+              "http://localhost:5000/users",
+              user
+            );
+            console.log(response.data); // Eklenen kullanıcının yanıtını konsolda gösterir
+          } catch (error) {
+            console.error(error);
+          }
+        }
+      }
+    }
+  };
+
   return (
     <Container maxWidth="sm">
       <AppBar
@@ -47,10 +71,9 @@ export default function RegisterPage() {
           indicatorColor="primary"
           textColor="inherit"
           variant="fullWidth"
-          aria-label="full width tabs example"
           sx={{
             "& .MuiTabs-indicator": {
-              backgroundColor: "darkslateblue",
+              backgroundColor: colors.primary[100],
             },
           }}
         >
@@ -85,8 +108,8 @@ export default function RegisterPage() {
               label="Email Adresi"
               autoComplete="email"
               autoFocus
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
+              value={user.email}
+              onChange={(e) => setUser({ ...user, email: e.target.value })}
             />
             <TextField
               margin="normal"
@@ -96,11 +119,11 @@ export default function RegisterPage() {
               label="Şifre"
               type="password"
               autoComplete="current-password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
+              value={user.password}
+              onChange={(e) => setUser({ ...user, password: e.target.value })}
             />
             <Button
-              disabled={!email || !password}
+              disabled={!user.email || !user.password}
               type="submit"
               fullWidth
               variant="contained"
@@ -136,8 +159,8 @@ export default function RegisterPage() {
               label="Email Adresi"
               autoComplete="email"
               autoFocus
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
+              value={user.email}
+              onChange={(e) => setUser({ ...user, email: e.target.value })}
             />
             <TextField
               margin="normal"
@@ -147,8 +170,8 @@ export default function RegisterPage() {
               label="Şifre"
               type="password"
               autoComplete="current-password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
+              value={user.password}
+              onChange={(e) => setUser({ ...user, password: e.target.value })}
             />
             <TextField
               margin="normal"
@@ -157,11 +180,11 @@ export default function RegisterPage() {
               fullWidth
               label="Telefon"
               type="tel"
-              value={tel}
-              onChange={(e) => setTel(e.target.value)}
+              value={user.tel}
+              onChange={(e) => setUser({ ...user, tel: e.target.value })}
             />
             <Button
-              disabled={!email || !password}
+              disabled={!user.email || !user.password || !user.tel}
               type="submit"
               fullWidth
               variant="contained"

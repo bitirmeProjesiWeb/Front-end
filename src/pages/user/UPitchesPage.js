@@ -14,7 +14,7 @@ export default function UPitchesPage() {
       const pr = await axios.get("http://localhost:5000/pitches");
 
       const pd = pr.data;
-      
+
       setPitches(pd);
     };
 
@@ -35,7 +35,7 @@ export default function UPitchesPage() {
             item.type === tip
         )
         .map((item) => (
-          <CardCom key={item.pitchId} {...item} />
+          <CardCom key={item.id} {...item} />
         ))}
     </Box>
   );

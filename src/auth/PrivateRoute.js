@@ -34,7 +34,7 @@ export default function PrivateRoute({ children, requiredRole }) {
   }
 
   if (requiredRole === "user") {
-    if (user.role === "user") {
+    if (user.role === "user" || user.role === "admin") {
       return children;
     } else {
       return (

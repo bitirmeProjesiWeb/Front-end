@@ -17,18 +17,16 @@ export default function UPitchReservationsPage() {
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
 
-  const { pitchId } = useParams();
+  const { id } = useParams();
 
   const [filtered, setFiltered] = useState();
   const [tarih, setTarih] = useState("");
 
   useEffect(() => {
     const fetchData = async () => {
-      const pr = await axios.get(
-        `http://localhost:5000/pitches?pitchId=${pitchId}`
-      );
+      const pr = await axios.get(`http://localhost:5000/pitches?id=${id}`);
       const rr = await axios.get(
-        `http://localhost:5000/reservations?pitchId=${pitchId}`
+        `http://localhost:5000/reservations?pitchId=${id}`
       );
 
       const pd = pr.data[0];
@@ -38,8 +36,7 @@ export default function UPitchReservationsPage() {
         const filteredSessions = pd.sessions.map((session) =>
           !rd.some(
             (reservation) =>
-              reservation.date === tarih &&
-              session.sessionId === reservation.sessionId
+              reservation.date === tarih && session.id === reservation.sessionId
           )
             ? session
             : { ...session, emp: true }
@@ -50,7 +47,7 @@ export default function UPitchReservationsPage() {
     };
 
     fetchData();
-  }, [pitchId, tarih]);
+  }, [id, tarih]);
 
   const minTarih = new Date().toISOString().slice(0, 10);
   const maxTarih = new Date(Date.now() + 14 * 24 * 60 * 60 * 1000)
@@ -118,7 +115,7 @@ export default function UPitchReservationsPage() {
                 !item.emp ? (
                   <Button
                     variant="outlined"
-                    key={item.sessionId}
+                    key={item.id}
                     sx={{ marginTop: "1rem" }}
                     color="info"
                   >
@@ -127,7 +124,7 @@ export default function UPitchReservationsPage() {
                 ) : (
                   <Button
                     variant="contained"
-                    key={item.sessionId}
+                    key={item.id}
                     sx={{ marginTop: "1rem" }}
                     color="error"
                     onClick={() => alert("dolu")}

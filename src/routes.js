@@ -38,11 +38,11 @@ const routes = [
         element: <UPitchesPage />,
       },
       {
-        path: "pitchdetail/:pitchId",
+        path: "pitchdetail/:id",
         element: <UPitchDetailPage />,
       },
       {
-        path: "pitchreservation/:pitchId",
+        path: "pitchreservation/:id",
         element: <UPitchReservationsPage />,
       },
     ],
