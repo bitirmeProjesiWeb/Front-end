@@ -9,6 +9,7 @@ import {
   Typography,
   Paper,
   useTheme,
+  Divider,
 } from "@mui/material";
 import { useData } from "../../context/Context";
 import { tokens } from "../../theme";
@@ -68,6 +69,7 @@ export default function LoginPage() {
         >
           <Typography variant="h2" textAlign="center">
             Giriş Yap
+            <Divider sx={{ marginY: "1rem" }} />
           </Typography>
           <Box
             component="form"

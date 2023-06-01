@@ -8,6 +8,7 @@ import {
   Select,
   TextField,
 } from "@mui/material";
+import axios from "axios";
 import React from "react";
 import { useNavigate } from "react-router-dom";
 
@@ -21,6 +22,10 @@ export default function SelectLocationForm({
   setType,
 }) {
   const navigate = useNavigate();
+
+  const typeHandle = (e) => {
+    setType(e.target.value);
+  };
 
   const cityHandle = (option) => {
     setSelectedCounties(null);
@@ -50,11 +55,6 @@ export default function SelectLocationForm({
       selectedCity ? alert("il seç") : alert("saha tipi seç");
     }
   };
-
-  const typeHandle = (e) => {
-    setType(e.target.value);
-  };
-
   return (
     <Box display="flex" justifyContent={"center"}>
       <FormControl color="info" sx={{ width: 300, marginRight: "20px" }}>
