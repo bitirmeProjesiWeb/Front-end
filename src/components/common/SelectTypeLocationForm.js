@@ -1,3 +1,4 @@
+import React from "react";
 import {
   Autocomplete,
   Box,
@@ -8,8 +9,6 @@ import {
   Select,
   TextField,
 } from "@mui/material";
-import axios from "axios";
-import React from "react";
 import { useNavigate } from "react-router-dom";
 
 export default function SelectLocationForm({
