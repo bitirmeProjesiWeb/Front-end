@@ -89,7 +89,6 @@ const routes = [
   },
 ];
 
-
 const authMap = (routes) =>
   routes.map((route) => {
     if (route?.requiredRole) {
@@ -103,7 +102,7 @@ const authMap = (routes) =>
     if (route?.children) {
       route.children = authMap(route.children);
     }
-    
+
     return route;
   });
 

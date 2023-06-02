@@ -88,7 +88,7 @@ export default function ProfilePages() {
           }}
         >
           <Typography>
-            rezervasyon Yapmak İstediğinizden emin misiniz?
+            Rezervasyonu iptal etmek İstediğinizden emin misiniz?
           </Typography>
           <Box
             sx={{
