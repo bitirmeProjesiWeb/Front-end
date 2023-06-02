@@ -47,7 +47,7 @@ export default function SelectLocationForm({
     if (selectedCity && type !== 0) {
       navigate(
         `/pitches/${selectedCity.name}/${
-          selectedCounties ? selectedCounties.name : 0
+          selectedCounties ? selectedCounties.name : "0"
         }/${type}`
       );
     } else {

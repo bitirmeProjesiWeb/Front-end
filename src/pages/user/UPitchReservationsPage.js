@@ -1,6 +1,7 @@
 import {
   Button,
   Grid,
+  Modal,
   Paper,
   TextField,
   Typography,
@@ -8,6 +9,7 @@ import {
 } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import { useData } from "../../context/Context";
 import { tokens } from "../../theme";
 import { Box } from "@mui/system";
 import BackdropComp from "../../components/common/BackdropComp";
@@ -18,9 +20,12 @@ export default function UPitchReservationsPage() {
   const colors = tokens(theme.palette.mode);
 
   const { id } = useParams();
+  const { user } = useData();
 
   const [filtered, setFiltered] = useState();
-  const [tarih, setTarih] = useState("");
+  const [date, setDate] = useState("");
+  const [open, setOpen] = useState(false);
+  const [sessionId, setSessionId] = useState(false);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -36,7 +41,7 @@ export default function UPitchReservationsPage() {
         const filteredSessions = pd.sessions.map((session) =>
           !rd.some(
             (reservation) =>
-              reservation.date === tarih && session.id === reservation.sessionId
+              reservation.date === date && session.id === reservation.sessionId
           )
             ? session
             : { ...session, emp: true }
@@ -47,21 +52,43 @@ export default function UPitchReservationsPage() {
     };
 
     fetchData();
-  }, [id, tarih]);
+  }, [id, date, open]);
 
-  const minTarih = new Date().toISOString().slice(0, 10);
-  const maxTarih = new Date(Date.now() + 14 * 24 * 60 * 60 * 1000)
+  const minDate = new Date().toISOString().slice(0, 10);
+  const maxDate = new Date(Date.now() + 14 * 24 * 60 * 60 * 1000)
     .toISOString()
     .slice(0, 10);
 
-  const setDate = (event) => {
-    const secilenTarih = event.target.value;
+  const handleDate = (event) => {
+    const secilenDate = event.target.value;
 
-    if (secilenTarih >= minTarih && secilenTarih <= maxTarih) {
-      setTarih(secilenTarih);
+    if (secilenDate >= minDate && secilenDate <= maxDate) {
+      setDate(secilenDate);
     } else {
-      setTarih();
+      setDate();
     }
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setSessionId(parseInt(e.target.name));
+    if (user) {
+      setOpen(true);
+    } else {
+      alert("rezervasyon yapmak için giriş yapmalısınız");
+    }
+  };
+
+  const handleAccept = async (e) => {
+    e.preventDefault();
+    await axios.post("http://localhost:5000/reservations", {
+      userId: user.id,
+      pitchId: parseInt(id),
+      sessionId: sessionId,
+      date: date,
+    });
+
+    setOpen(false);
   };
 
   if (!filtered) {
@@ -70,6 +97,47 @@ export default function UPitchReservationsPage() {
 
   return (
     <Grid container marginTop={4} spacing={4} justifyContent={"center"}>
+      <Modal open={open} onClose={() => setOpen(false)}>
+        <Box
+          sx={{
+            position: "absolute",
+            top: "50%",
+            left: "50%",
+            transform: "translate(-50%, -50%)",
+            backgroundColor: colors.primary[900],
+            borderRadius: "10px",
+            boxShadow: "0 0 20px 5px #aaccff",
+            overflow: "scroll",
+            width: "400px",
+            height: "150px",
+            p: 4,
+          }}
+        >
+          <Typography>
+            rezervasyon Yapmak İstediğinizden emin misiniz?
+          </Typography>
+          <Box
+            sx={{
+              display: "flex",
+              flexWrap: "wrap",
+              marginTop: "2rem",
+              justifyContent: "end",
+            }}
+          >
+            <Button
+              color="error"
+              variant="outlined"
+              onClick={() => setOpen(false)}
+              sx={{ marginRight: "2rem" }}
+            >
+              Vazgeç
+            </Button>
+            <Button color="success" variant="outlined" onClick={handleAccept}>
+              Evet
+            </Button>
+          </Box>
+        </Box>
+      </Modal>
       <Grid item xs={8}>
         <Paper
           elevation={20}
@@ -83,13 +151,13 @@ export default function UPitchReservationsPage() {
           <Box display={"flex"} justifyContent={"center"}>
             <TextField
               type="date"
-              value={tarih}
-              onChange={setDate}
+              value={date}
+              onChange={handleDate}
               inputProps={{
-                min: minTarih,
-                max: maxTarih,
+                min: minDate,
+                max: maxDate,
                 style: {
-                  color: tarih < minTarih ? "red" : "inherit",
+                  color: date < minDate ? "red" : "inherit",
                 },
               }}
             />
@@ -110,10 +178,12 @@ export default function UPitchReservationsPage() {
             seanslar
           </Typography>
           <Box display={"flex"} justifyContent={"center"}>
-            {tarih &&
+            {date &&
               filtered.map((item) =>
                 !item.emp ? (
                   <Button
+                    name={item.id}
+                    onClick={handleSubmit}
                     variant="outlined"
                     key={item.id}
                     sx={{ marginTop: "1rem" }}

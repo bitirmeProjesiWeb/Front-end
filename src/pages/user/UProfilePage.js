@@ -8,6 +8,7 @@ import {
   Input,
   List,
   ListItem,
+  Modal,
   Paper,
   Typography,
   useTheme,
@@ -18,6 +19,7 @@ import { useData } from "../../context/Context";
 import { Edit } from "@mui/icons-material";
 import BackdropComp from "../../components/common/BackdropComp";
 import axios from "axios";
+import { NavLink } from "react-router-dom";
 
 export default function ProfilePages() {
   const theme = useTheme();
@@ -25,6 +27,8 @@ export default function ProfilePages() {
 
   const [reservations, setReservations] = useState();
   const [pitches, setPitches] = useState();
+  const [open, setOpen] = useState(false);
+  const [reservationId, setReservationId] = useState(false);
 
   const { user } = useData();
 
@@ -44,9 +48,22 @@ export default function ProfilePages() {
     };
 
     fetchData();
-  }, [user]);
+  }, [user, reservationId]);
 
   const tarih = new Date(Date.now()).toISOString().slice(0, 10);
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setOpen(true);
+    setReservationId(parseInt(e.target.name));
+  };
+
+  const handleAccept = async (e) => {
+    e.preventDefault();
+    await axios.delete(`http://localhost:5000/reservations/${reservationId}`);
+    setOpen(false);
+    setReservationId(false);
+  };
 
   if (!reservations || !pitches) {
     return <BackdropComp />;
@@ -54,6 +71,47 @@ export default function ProfilePages() {
 
   return (
     <Grid container justifyContent={"center"} marginTop={4} spacing={4}>
+      <Modal open={open} onClose={() => setOpen(false)}>
+        <Box
+          sx={{
+            position: "absolute",
+            top: "50%",
+            left: "50%",
+            transform: "translate(-50%, -50%)",
+            backgroundColor: colors.primary[900],
+            borderRadius: "10px",
+            boxShadow: "0 0 20px 5px #aaccff",
+            overflow: "scroll",
+            width: "400px",
+            height: "150px",
+            p: 4,
+          }}
+        >
+          <Typography>
+            rezervasyon Yapmak İstediğinizden emin misiniz?
+          </Typography>
+          <Box
+            sx={{
+              display: "flex",
+              flexWrap: "wrap",
+              marginTop: "2rem",
+              justifyContent: "end",
+            }}
+          >
+            <Button
+              color="error"
+              variant="outlined"
+              onClick={() => setOpen(false)}
+              sx={{ marginRight: "2rem" }}
+            >
+              Vazgeç
+            </Button>
+            <Button color="success" variant="outlined" onClick={handleAccept}>
+              Evet
+            </Button>
+          </Box>
+        </Box>
+      </Modal>
       <Grid item>
         <Paper
           elevation={20}
@@ -146,7 +204,7 @@ export default function ProfilePages() {
           </Paper>
         </Grid>
         <Grid container justifyContent={"space-between"}>
-          <Grid item xs={4} marginTop={"2rem"}>
+          <Grid item xs={6} marginTop={"2rem"}>
             <Paper
               elevation={20}
               sx={{
@@ -201,10 +259,23 @@ export default function ProfilePages() {
                               marginTop="1rem"
                               justifyContent="space-between"
                             >
-                              <Button variant="outlined" color="info">
+                              <Button
+                                component={NavLink}
+                                to={`/pitchdetail/${pitch.id}`}
+                                fullWidth
+                                variant="outlined"
+                                color="info"
+                                sx={{ marginRight: "1rem" }}
+                              >
                                 İncele
                               </Button>
-                              <Button variant="outlined" color="error">
+                              <Button
+                                name={reservation.id}
+                                variant="outlined"
+                                fullWidth
+                                color="error"
+                                onClick={(e) => handleSubmit(e)}
+                              >
                                 İptal Et
                               </Button>
                             </Box>
@@ -215,7 +286,7 @@ export default function ProfilePages() {
               </List>
             </Paper>
           </Grid>
-          <Grid item xs={4} marginTop={"2rem"}>
+          <Grid item xs={6} marginTop={"2rem"}>
             <Paper
               elevation={20}
               sx={{
@@ -270,7 +341,13 @@ export default function ProfilePages() {
                               marginTop="1rem"
                               justifyContent="space-between"
                             >
-                              <Button variant="outlined" fullWidth color="info">
+                              <Button
+                                component={NavLink}
+                                to={`/pitchdetail/${pitch.id}`}
+                                variant="outlined"
+                                fullWidth
+                                color="info"
+                              >
                                 İncele
                               </Button>
                             </Box>
@@ -278,63 +355,6 @@ export default function ProfilePages() {
                         ))}
                     </ListItem>
                   ))}
-              </List>
-            </Paper>
-          </Grid>
-          <Grid item xs={4} marginTop={"2rem"}>
-            <Paper
-              elevation={20}
-              sx={{
-                background: colors.primary[400],
-                padding: "2rem",
-                marginLeft: "2rem",
-                borderRadius: "20px",
-              }}
-            >
-              <Typography
-                variant="h4"
-                color="goldenrod"
-                textAlign="center"
-                fontFamily={"'Andika'"}
-              >
-                Öneriler
-              </Typography>
-              <List>
-                {reservations.map((reservation, i) => (
-                  <ListItem key={i}>
-                    {pitches
-                      .filter((item) => item.id === reservation.pitchId)
-                      .map((pitch, i) => (
-                        <Paper
-                          key={i}
-                          sx={{
-                            padding: "1rem",
-                            backgroundColor: colors.primary[400],
-                            width: "100%",
-                          }}
-                        >
-                          <Typography variant="h5">
-                            {pitch.pitchTitle}
-                          </Typography>
-                          <Typography variant="h6" color="textSecondary">
-                            Daha önce {pitch.id} kere rezervasyon yaptırdınız.
-                          </Typography>
-                          <Box
-                            display="flex"
-                            marginTop="1rem"
-                            justifyContent="space-between"
-                          >
-                            <Button variant="outlined" color="info">
-                              İncele
-                            </Button>
-                            <Button variant="outlined" color="warning">
-                              Rezervasyon Yap
-                            </Button>
-                          </Box>
-                        </Paper>
-                      ))}
-                  </ListItem>
-                ))}
               </List>
             </Paper>
           </Grid>

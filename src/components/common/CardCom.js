@@ -49,6 +49,8 @@ export default function CardCom({ id, image, pitchTitle, description, price }) {
         incele
       </Button>
       <Button
+        component={NavLink}
+        to={`/pitchreservation/${id}`}
         style={{ margin: "10px", float: "right" }}
         size="medium"
         variant="outlined"

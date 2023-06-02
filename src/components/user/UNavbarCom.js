@@ -78,7 +78,11 @@ export default function UNavbarCom() {
               open={Boolean(anchorEl)}
               onClose={() => setAnchorEl(null)}
             >
-              <MenuItem component={NavLink} to="/profile">
+              <MenuItem
+                component={NavLink}
+                to="/profile"
+                onClick={() => setAnchorEl(null)}
+              >
                 Profil
               </MenuItem>
               <MenuItem onClick={() => setUser(false)}>Çıkış Yap</MenuItem>
