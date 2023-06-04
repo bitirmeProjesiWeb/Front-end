@@ -1,8 +1,8 @@
+import axios from "axios";
 import { createContext, useContext, useEffect, useState } from "react";
 const Context = createContext();
 
 const Provider = ({ children }) => {
-<<<<<<< HEAD
   const [user, setUser] = useState(() => {
     const storedUser = localStorage.getItem("user");
     if (storedUser) {
@@ -19,7 +19,6 @@ const Provider = ({ children }) => {
       localStorage.removeItem("user");
     }
   }, [user]);
-=======
   const [items, setItems] = useState([]);
 
   //aCapacityBox'taki pie chart datası için
@@ -28,8 +27,6 @@ const Provider = ({ children }) => {
   const [aUpComingR, setAUpComingR] = useState();
   //Randevular sayfası için
   const [aReservations, setAReservations] = useState();
-
-  const [user, setUser] = useState();
 
   //Sorular
   const [aQuestions, setAquestions] = useState();
@@ -54,20 +51,16 @@ const Provider = ({ children }) => {
     getirData();
   }, [aCapacityData]);
 
-  console.log(aQuestions);
   // Verileri tarih sırasına göre sırala
   const sortedReservations =
     aUpComingR &&
     aUpComingR.sort((a, b) => {
       return new Date(a.date) - new Date(b.date);
     });
->>>>>>> adminPanel
 
   const values = {
     setUser,
-<<<<<<< HEAD
     user,
-=======
     aCapacityData,
     setACapacityData,
     aUpComingR,
@@ -81,7 +74,6 @@ const Provider = ({ children }) => {
     setAComments,
     pitchList,
     setPitchList,
->>>>>>> adminPanel
   };
 
   return <Context.Provider value={values}>{children}</Context.Provider>;
