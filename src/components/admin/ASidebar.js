@@ -30,6 +30,7 @@ import { NavLink } from "react-router-dom";
 
 const sidebarListItems = [
   {
+    key: 1,
     type: "listItem",
     icon: <HomeOutlined />,
     text: "Anasayfa",
@@ -37,44 +38,49 @@ const sidebarListItems = [
   },
   {},
   {
+    key: 2,
     type: "listItem",
     icon: <GroupsOutlined />,
     text: "Randevular",
-    link: "/admin/randevular",
+    link: "randevular",
   },
   {
+    key: 3,
     type: "listItem",
     icon: <SportsSoccerOutlined />,
     text: "Spor Alanları",
-    link: "/admin/spor-alanlari",
+    link: "sporAlanlari",
   },
   {
+    key: 4,
     type: "listItem",
     icon: <CalendarToday />,
     text: "Takvim",
-    link: "/admin/takvim",
+    link: "takvim",
   },
 
   {
+    key: 5,
     type: "listItem",
     icon: <Quiz />,
     text: "Soru ve Yorumlar",
-    link: "/admin/yorumlar",
+    link: "yorumlar",
   },
   {},
   {
+    key: 6,
     type: "listItem",
     icon: <StoreOutlined />,
     text: "Kurum Yönetimi",
-    link: "/admin/kurum-yönetimi",
+    link: "kurumYonetimi",
   },
 ];
 
-function SidebarListItemCom({ icon, link, text }) {
+function SidebarListItemCom({ item }) {
   return (
-    <ListItem button component={NavLink} to={link}>
-      <ListItemIcon>{icon}</ListItemIcon>
-      <ListItemText primary={text} />
+    <ListItem button component={NavLink} to={item.link}>
+      <ListItemIcon>{item.icon}</ListItemIcon>
+      <ListItemText primary={item.text} />
     </ListItem>
   );
 }
@@ -86,13 +92,12 @@ export default function ASidebar({ children, open, setOpen, drawer }) {
   const drawerOpenHandle = () => {
     setOpen(!open);
   };
-
   return (
     <Box sx={{ display: "flex" }}>
       <Box>
         <Drawer
           PaperProps={{
-            elevation: "1",
+            elevation: 1,
             sx: { background: colors.primary[400] },
           }} // tema renk ayarı
           variant="permanent"
@@ -120,7 +125,7 @@ export default function ASidebar({ children, open, setOpen, drawer }) {
           <List style={drawer}>
             {sidebarListItems.map((item) =>
               item.type === "listItem" ? (
-                <SidebarListItemCom {...item} />
+                <SidebarListItemCom key={item.key} item={item} />
               ) : (
                 <Divider />
               )
