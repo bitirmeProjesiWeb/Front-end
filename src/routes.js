@@ -1,6 +1,7 @@
 import CommonLayout from "./pages/common/CommonLayout";
 import LoginPage from "./pages/common/LoginPage";
 import RegisterPage from "./pages/common/RegisterPage";
+import ForgotPasswordPage from "./pages/common/ForgotPasswordPage";
 
 import UHomePage from "./pages/user/UHomePage";
 import UProfilePage from "./pages/user/UProfilePage";
@@ -17,11 +18,12 @@ import ACommentsPage from "./pages/admin/ACommentsPage";
 import AManagementPage from "./pages/admin/AManagementPage";
 
 
-import PrivateRoot from "./auth/PrivateRoute";
-import AdminRoute from "./auth/AdminRoute";
 import UPitchesPage from "./pages/user/UPitchesPage";
 import UPitchDetailPage from "./pages/user/UPitchDetailPage";
-import UReservationsPage from "./pages/user/UReservationsPage";
+import NotFoundPage from "./pages/common/NotFoundPage";
+import UPitchReservationsPage from "./pages/user/UPitchReservationsPage";
+
+import PrivateRoute from "./auth/PrivateRoute";
 
 const routes = [
   {
@@ -35,20 +37,19 @@ const routes = [
       {
         path: "profile",
         element: <UProfilePage />,
-        auth: true,
+        requiredRole: "user",
       },
       {
-        path: "reservations",
-        element: <UReservationsPage />,
-        auth: true,
-      },
-      {
-        path: "pitches",
+        path: "pitches/:il/:ilce/:tip",
         element: <UPitchesPage />,
       },
       {
-        path: "pitchDetail/:pitchId",
+        path: "pitchdetail/:id",
         element: <UPitchDetailPage />,
+      },
+      {
+        path: "pitchreservation/:id",
+        element: <UPitchReservationsPage />,
       },
     ],
   },
@@ -61,9 +62,17 @@ const routes = [
     element: <RegisterPage />,
   },
   {
+    path: "/forgotpassword",
+    element: <ForgotPasswordPage />,
+  },
+  {
+    path: "*",
+    element: <NotFoundPage />,
+  },
+  {
     path: "/admin",
     element: <AdminLayout />,
-    // admin: true,
+    requiredRole: "admin",
     children: [
       {
         index: true,
@@ -108,15 +117,18 @@ const routes = [
 
 const authMap = (routes) =>
   routes.map((route) => {
-    if (route?.auth) {
-      route.element = <PrivateRoot>{route.element}</PrivateRoot>;
+    if (route?.requiredRole) {
+      route.element = (
+        <PrivateRoute requiredRole={route?.requiredRole}>
+          {route.element}
+        </PrivateRoute>
+      );
     }
-    if (route?.admin) {
-      route.element = <AdminRoute>{route.element}</AdminRoute>;
-    }
+
     if (route?.children) {
       route.children = authMap(route.children);
     }
+
     return route;
   });
 

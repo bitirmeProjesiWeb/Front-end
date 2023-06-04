@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { NavLink } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { NavLink, useNavigate } from "react-router-dom";
 import {
   TextField,
   Button,
@@ -7,29 +7,69 @@ import {
   Box,
   Container,
   Typography,
+  Paper,
+  useTheme,
+  Divider,
 } from "@mui/material";
+import { useData } from "../../context/Context";
+import { tokens } from "../../theme";
+import axios from "axios";
 
 export default function LoginPage() {
+  const theme = useTheme();
+  const colors = tokens(theme.palette.mode);
+
+  const { user, setUser } = useData();
+
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
+  const navigate = useNavigate();
+
   const handleSubmit = async (e) => {
     e.preventDefault();
-    //todo login fonksiyonu
+
+    if (email && password) {
+      const ur = await axios.get(
+        `http://localhost:5000/users?email=${email}&password=${password}`
+      );
+      const ud = ur.data[0];
+      if (ud) {
+        setUser(ud);
+      } else {
+        alert("böyle bir hesap bulunamadı");
+      }
+    }
   };
 
+  useEffect(() => {
+    if (user) {
+      navigate("/");
+    }
+  }, [user, navigate]);
+
   return (
-      <Container component="main" maxWidth="xs">
-        <Box
+    <Container maxWidth="sm">
+      <Box
+        sx={{
+          marginTop: 8,
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
+        }}
+      >
+        <Paper
+          elevation={20}
           sx={{
-            marginTop: 8,
-            display: "flex",
-            flexDirection: "column",
-            alignItems: "center",
+            width: "100%",
+            height: "100%",
+            background: colors.primary[400],
+            padding: "5rem",
           }}
         >
-          <Typography component="h1" variant="h5">
+          <Typography variant="h2" textAlign="center">
             Giriş Yap
+            <Divider sx={{ marginY: "1rem" }} />
           </Typography>
           <Box
             component="form"
@@ -39,11 +79,10 @@ export default function LoginPage() {
           >
             <TextField
               margin="normal"
+              color="warning"
               required
               fullWidth
-              id="email"
-              label="Email Adresi"
-              name="email"
+              label="Email yada Kullanıcı Adı"
               autoComplete="email"
               autoFocus
               value={email}
@@ -51,12 +90,11 @@ export default function LoginPage() {
             />
             <TextField
               margin="normal"
+              color="warning"
               required
               fullWidth
-              name="password"
               label="Şifre"
               type="password"
-              id="password"
               autoComplete="current-password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
@@ -67,23 +105,33 @@ export default function LoginPage() {
               fullWidth
               variant="contained"
               sx={{ mt: 3, mb: 2 }}
+              color="info"
             >
               Giriş Yap
             </Button>
             <Grid container>
               <Grid item xs>
-                <NavLink href="#" variant="body2">
+                <Typography
+                  component={NavLink}
+                  to="/forgotpassword"
+                  sx={{ textDecoration: "none", color: "inherit" }}
+                >
                   Şifreni mi unuttun?
-                </NavLink>
+                </Typography>
               </Grid>
               <Grid item>
-                <NavLink to="/register" variant="body2">
+                <Typography
+                  component={NavLink}
+                  to="/register"
+                  sx={{ textDecoration: "none", color: "inherit" }}
+                >
                   Hesabın yok mu? Kayıt Ol
-                </NavLink>
+                </Typography>
               </Grid>
             </Grid>
           </Box>
-        </Box>
-      </Container>
+        </Paper>
+      </Box>
+    </Container>
   );
 }

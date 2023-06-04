@@ -2,55 +2,38 @@ import {
   DarkModeOutlined,
   LightModeOutlined,
   NotificationsOutlined,
+  PersonOutlined,
   SettingsOutlined,
 } from "@mui/icons-material";
 import {
   AppBar,
-  Avatar,
   Badge,
   Box,
   CssBaseline,
   IconButton,
-  Menu,
-  MenuItem,
   Toolbar,
   Typography,
   useTheme,
 } from "@mui/material";
 import { ColorModeContext, tokens } from "../../theme";
-import React, { useContext, useState } from "react";
-import { useData } from "../../context/Context";
+import React, { useContext } from "react";
 import { NavLink } from "react-router-dom";
 
-export default function UNavbarCom() {
+export default function CNavbarCom() {
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
   const colorMode = useContext(ColorModeContext);
-
-  const { user, setUser } = useData();
-
-  const [anchorEl, setAnchorEl] = useState(null);
-
-  const handleClick = (event) => {
-    setAnchorEl(event.currentTarget);
-  };
-
   return (
     <Box sx={{ display: "flex", justifyContent: "space-between", p: "2px" }}>
       <CssBaseline />
       <AppBar
-        position="fixed"
+        position="absolute"
         color="inherit"
         sx={{ background: colors.primary[400] }}
       >
         <Toolbar>
           <Typography variant="h1" noWrap sx={{ flexGrow: 1 }}>
-            <NavLink
-              to="/"
-              style={{ textDecoration: "none", color: "inherit" }}
-            >
-              SporLife
-            </NavLink>
+            <NavLink to="/" style={{textDecoration:"none", color:"inherit"}}>SporLife</NavLink>
           </Typography>
           <Box display="flex">
             <IconButton onClick={colorMode.toggleColorMode}>
@@ -61,32 +44,16 @@ export default function UNavbarCom() {
               )}
             </IconButton>
             <IconButton>
-              <Badge badgeContent="4">
+              <Badge badgeContent={4}>
                 <NotificationsOutlined />
               </Badge>
             </IconButton>
             <IconButton>
               <SettingsOutlined />
             </IconButton>
-            <IconButton onClick={handleClick}>
-              <Avatar alt={user.userName} src={user.avatar} />
+            <IconButton component={NavLink} to="/profile">
+              <PersonOutlined />
             </IconButton>
-
-            <Menu
-              anchorEl={anchorEl}
-              keepMounted
-              open={Boolean(anchorEl)}
-              onClose={() => setAnchorEl(null)}
-            >
-              <MenuItem
-                component={NavLink}
-                to="/profile"
-                onClick={() => setAnchorEl(null)}
-              >
-                Profil
-              </MenuItem>
-              <MenuItem onClick={() => setUser(false)}>Çıkış Yap</MenuItem>
-            </Menu>
           </Box>
         </Toolbar>
       </AppBar>
