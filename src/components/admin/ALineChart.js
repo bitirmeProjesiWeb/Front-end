@@ -1,12 +1,30 @@
-import { useData } from "../../context/Context";
-import { useTheme } from "@mui/material";
+import { Backdrop, CircularProgress, useTheme } from "@mui/material";
 import { tokens } from "../../theme";
 import { ResponsiveLine } from "@nivo/line";
+import { useEffect, useState } from "react";
+import axios from "axios";
 
 const ALineChart = ({ isCustomLineColors = false, isDashboard = false }) => {
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
-  const { aLineData } = useData();
+  //aLineChart datası için
+  const [aLineData, setALineData] = useState();
+  useEffect(() => {
+    const getirData = async () => {
+      const result = await axios("/data.json");
+      const resultdata = result.data.aLineChartData;
+      setALineData(resultdata);
+    };
+    getirData();
+  }, [setALineData]);
+  if (!aLineData) {
+    return (
+      <Backdrop open={true}>
+        <CircularProgress />
+      </Backdrop>
+    );
+  }
+  
   return (
     <ResponsiveLine
       data={aLineData}

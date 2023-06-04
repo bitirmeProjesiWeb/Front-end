@@ -1,4 +1,11 @@
-import { Box, Rating, Typography, useTheme } from "@mui/material";
+import {
+  Backdrop,
+  Box,
+  CircularProgress,
+  Rating,
+  Typography,
+  useTheme,
+} from "@mui/material";
 import { tokens } from "../../theme";
 //import { mockTransactions } from "../../data/mockData";
 import AHeader from "../../components/admin/AHeader";
@@ -17,7 +24,13 @@ export default function HomePages() {
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
   const { sortedReservations } = useData();
-
+  if (!sortedReservations) {
+    return (
+      <Backdrop open={true}>
+        <CircularProgress />
+      </Backdrop>
+    );
+  }
   return (
     <Box m="20px">
       {/* HEADER */}
@@ -112,7 +125,7 @@ export default function HomePages() {
             subtitle="Bağcılar Spor Salonu"
             increase="%70"
           />
-          
+
           <ACapacityChart isDashboard={true} />
         </Box>
         <Box
@@ -135,10 +148,8 @@ export default function HomePages() {
           >
             Bağcılar Spor Sahası Memnuniyet Oranı
           </Typography>
-          <Rating  name="disabled"  disabled />
-
+          <Rating name="disabled" disabled />
         </Box>
-
 
         {/* ROW 2 */}
         <Box

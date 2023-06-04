@@ -5,8 +5,6 @@ const Context = createContext();
 const Provider = ({ children }) => {
   const [items, setItems] = useState([]);
 
-  //aLineChart datası için
-  const [aLineData, setALineData] = useState();
   //aCapacityBox'taki pie chart datası için
   const [aCapacityData, setACapacityData] = useState();
   //Yaklaşan Randevu datası için
@@ -29,7 +27,6 @@ const Provider = ({ children }) => {
     const getirData = async () => {
       const result = await axios("/data.json");
       setItems(result.data.pitches);
-      setALineData(result.data.aLineChartData);
       setACapacityData(result.data.aCapacityChartData);
       setAUpComingR(result.data.aUpComingReservations);
       setAReservations(result.data.aReservations);
@@ -38,7 +35,7 @@ const Provider = ({ children }) => {
       setPitchList(result.data.pitchList);
     };
     getirData();
-  }, [setALineData]);
+  }, [aCapacityData]);
 
   console.log(aQuestions);
   // Verileri tarih sırasına göre sırala
@@ -53,8 +50,6 @@ const Provider = ({ children }) => {
     setItems,
     user,
     setUser,
-    aLineData,
-    setALineData,
     aCapacityData,
     setACapacityData,
     aUpComingR,
@@ -67,7 +62,7 @@ const Provider = ({ children }) => {
     aComments,
     setAComments,
     pitchList,
-    setPitchList
+    setPitchList,
   };
 
   return <Context.Provider value={values}>{children}</Context.Provider>;
