@@ -5,7 +5,7 @@ import { Backdrop, CircularProgress } from "@mui/material";
 export default function MapsCom({ zoom, position }) {
   return position ? (
     <div>
-      <LoadScript googleMapsApiKey="AIzaSyA_OC0GDGUb6Otsghg_9o4NocnNSH6-n6I">
+      <LoadScript googleMapsApiKey="">
         <GoogleMap
           mapContainerStyle={{
             width: "100%",
