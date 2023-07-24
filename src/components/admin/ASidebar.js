@@ -71,9 +71,11 @@ const sidebarListItems = [
 ];
 
 function SidebarListItemCom({ item }) {
+  const theme = useTheme();
+  const colors = tokens(theme.palette.mode);
   return (
     <ListItem button component={NavLink} to={item.link}>
-      <ListItemIcon>{item.icon}</ListItemIcon>
+      <ListItemIcon sx={{ color: colors.sidebarTypographyColor[400] }}>{item.icon}</ListItemIcon>
       <ListItemText primary={item.text} />
     </ListItem>
   );
@@ -91,8 +93,14 @@ export default function ASidebar({ children, open, setOpen, drawer }) {
       <Box>
         <Drawer
           PaperProps={{
-            elevation: 1,
-            sx: { background: colors.primary[400] },
+            background: colors.sidebarAccent[400],
+            borderRadius: "2%",
+            ml: "0.5vh",
+            mt: "0.5vh",
+            mb: "0.5vh",
+            width: "auto",
+            boxShadow: "0px 0px 10px rgba(0, 0, 0, 0.1)",
+            color: colors.sidebarTypographyColor[400],
           }} // tema renk ayarı
           variant="permanent"
           open={open}
@@ -108,7 +116,7 @@ export default function ASidebar({ children, open, setOpen, drawer }) {
           >
             <IconButton
               edge="start"
-              sx={{ margin: "5px" }}
+              sx={{ margin: "5px", color: colors.sidebarTypographyColor[400] }}
               onClick={drawerOpenHandle}
             >
               {!open ? <Menu /> : <ChevronLeft />}
